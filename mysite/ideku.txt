@@ -1,0 +1,2 @@
+aku ingin yg tampilan khusus hp hanya menampilkan 3 artikel kemudian jika ditekan muat postingan lainnya akan muncul tiga lagi jika ditekan lagi muncul 3 lagi (ingat khusus hp)
+dan jika laptop hanya memunculkan 10 artikel jika ingin emmunculkan lagi maka harus menekan tombol tampilakan lagi dan akan mucul 3artikel

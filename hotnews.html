@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotNews - Berita Terkini Indonesia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .breaking-news {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .news-card {
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .trending-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .live-indicator {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+     <!-- tempat header dimuat -->
+  <div id="headernavbar.html"></div>
+   <script>
+    fetch("headernavbar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("headernavbar.html").innerHTML = html;
+      })     .catch(err => console.error("Gagal load header:", err));
+  </script>
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <!-- Top Bar -->
+            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                <div class="flex items-center space-x-4 text-sm text-gray-600">
+                    <span id="current-time"></span>
+                    <span>•</span>
+                    <span>Jakarta, Indonesia</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-red-500 rounded-full live-indicator"></div>
+                        <span class="text-sm font-medium text-red-600">LIVE</span>
+                    </div>
+                    <button class="bg-red-600 text-white px-4 py-1 rounded-full text-sm font-medium hover:bg-red-700 transition-colors">
+                        Breaking News
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Main Header -->
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-3xl font-bold text-red-600">HotNews</h1>
+                    <span class="text-sm text-gray-500">Berita Terkini Indonesia</span>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Beranda</a>
+                    <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Politik</a>
+                    <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Ekonomi</a>
+                    <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Olahraga</a>
+                    <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Teknologi</a>
+                    <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition-colors">Hiburan</a>
+                </nav>
+                
+                <!-- Search -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Cari berita..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breaking News Ticker -->
+    <div class="bg-red-600 text-white py-2 overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center">
+                <span class="bg-white text-red-600 px-3 py-1 rounded font-bold text-sm mr-4 trending-badge">BREAKING</span>
+                <div class="breaking-news">
+                    <span class="text-sm">🔥 Presiden Jokowi Resmikan Proyek IKN Nusantara • 📈 Rupiah Menguat Terhadap Dolar AS • ⚽ Timnas Indonesia Lolos ke Piala Asia 2024</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Main News Section -->
+            <div class="lg:col-span-3">
+                <!-- Featured News -->
+                <section class="mb-8">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
+                        <div class="relative">
+                            <div class="h-96 bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+                                <div class="text-center text-white p-8">
+                                    <div class="w-24 h-24 mx-auto mb-4 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="text-sm opacity-75">Foto Utama Berita</p>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">UTAMA</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center space-x-4 mb-3">
+                                <span class="text-red-600 font-medium text-sm">POLITIK</span>
+                                <span class="text-gray-400 text-sm">•</span>
+                                <span class="text-gray-500 text-sm">2 jam yang lalu</span>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-900 mb-3 leading-tight">
+                                Presiden Jokowi Resmikan Pembangunan Fase Pertama Ibu Kota Nusantara
+                            </h2>
+                            <p class="text-gray-600 mb-4 leading-relaxed">
+                                Presiden Joko Widodo secara resmi meresmikan pembangunan fase pertama Ibu Kota Nusantara (IKN) di Kalimantan Timur. Proyek ambisius ini diharapkan dapat menjadi solusi untuk mengurangi beban Jakarta sebagai ibu kota.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <button class="bg-red-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors">
+                                    Baca Selengkapnya
+                                </button>
+                                <div class="flex items-center space-x-4 text-gray-500">
+                                    <button class="flex items-center space-x-1 hover:text-red-600 transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                        </svg>
+                                        <span class="text-sm">1.2k</span>
+                                    </button>
+                                    <button class="flex items-center space-x-1 hover:text-red-600 transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                                        </svg>
+                                        <span class="text-sm">Share</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Latest News Grid -->
+                <section>
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900">Berita Terbaru</h3>
+                        <div class="flex space-x-2">
+                            <button class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium">Semua</button>
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-300 transition-colors">Politik</button>
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-300 transition-colors">Ekonomi</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- News Card 1 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
+                            <div class="h-48 bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="w-16 h-16 mx-auto mb-2 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                        <span class="text-2xl">💰</span>
+                                    </div>
+                                    <p class="text-sm opacity-75">Foto Berita</p>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="text-green-600 font-medium text-xs">EKONOMI</span>
+                                    <span class="text-gray-400 text-xs">•</span>
+                                    <span class="text-gray-500 text-xs">4 jam yang lalu</span>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2 leading-tight">
+                                    Rupiah Menguat Signifikan Terhadap Dolar Amerika Serikat
+                                </h4>
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Nilai tukar rupiah terhadap dolar AS menguat hingga Rp 15.200 per dolar, didorong oleh sentimen positif investor...
+                                </p>
+                                <button class="text-red-600 font-medium text-sm hover:text-red-700 transition-colors">
+                                    Baca Selengkapnya →
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- News Card 2 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
+                            <div class="h-48 bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="w-16 h-16 mx-auto mb-2 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                        <span class="text-2xl">⚽</span>
+                                    </div>
+                                    <p class="text-sm opacity-75">Foto Berita</p>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="text-orange-600 font-medium text-xs">OLAHRAGA</span>
+                                    <span class="text-gray-400 text-xs">•</span>
+                                    <span class="text-gray-500 text-xs">6 jam yang lalu</span>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2 leading-tight">
+                                    Timnas Indonesia Berhasil Lolos ke Piala Asia 2024
+                                </h4>
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Setelah pertandingan dramatis melawan Thailand, Timnas Indonesia berhasil mengamankan tiket ke Piala Asia...
+                                </p>
+                                <button class="text-red-600 font-medium text-sm hover:text-red-700 transition-colors">
+                                    Baca Selengkapnya →
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- News Card 3 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
+                            <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="w-16 h-16 mx-auto mb-2 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                        <span class="text-2xl">📱</span>
+                                    </div>
+                                    <p class="text-sm opacity-75">Foto Berita</p>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="text-purple-600 font-medium text-xs">TEKNOLOGI</span>
+                                    <span class="text-gray-400 text-xs">•</span>
+                                    <span class="text-gray-500 text-xs">8 jam yang lalu</span>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2 leading-tight">
+                                    Indonesia Luncurkan Program Digitalisasi UMKM Nasional
+                                </h4>
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Pemerintah meluncurkan program ambisius untuk mendigitalisasi 10 juta UMKM di seluruh Indonesia...
+                                </p>
+                                <button class="text-red-600 font-medium text-sm hover:text-red-700 transition-colors">
+                                    Baca Selengkapnya →
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- News Card 4 -->
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
+                            <div class="h-48 bg-gradient-to-r from-teal-500 to-cyan-500 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="w-16 h-16 mx-auto mb-2 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                        <span class="text-2xl">🌍</span>
+                                    </div>
+                                    <p class="text-sm opacity-75">Foto Berita</p>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="text-teal-600 font-medium text-xs">LINGKUNGAN</span>
+                                    <span class="text-gray-400 text-xs">•</span>
+                                    <span class="text-gray-500 text-xs">10 jam yang lalu</span>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2 leading-tight">
+                                    Indonesia Komitmen Netral Karbon pada 2060
+                                </h4>
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Presiden menegaskan komitmen Indonesia untuk mencapai net zero emission pada tahun 2060...
+                                </p>
+                                <button class="text-red-600 font-medium text-sm hover:text-red-700 transition-colors">
+                                    Baca Selengkapnya →
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="lg:col-span-1">
+                <!-- Trending News -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="text-2xl mr-2">🔥</span>
+                        Trending
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3 pb-4 border-b border-gray-100">
+                            <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">1</span>
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm leading-tight mb-1">
+                                    Harga BBM Naik, Masyarakat Protes
+                                </h4>
+                                <span class="text-gray-500 text-xs">12.5k pembaca</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 pb-4 border-b border-gray-100">
+                            <span class="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">2</span>
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm leading-tight mb-1">
+                                    Gempa 6.2 SR Guncang Sumatra Barat
+                                </h4>
+                                <span class="text-gray-500 text-xs">8.9k pembaca</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 pb-4 border-b border-gray-100">
+                            <span class="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">3</span>
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm leading-tight mb-1">
+                                    Artis Indonesia Raih Penghargaan Internasional
+                                </h4>
+                                <span class="text-gray-500 text-xs">7.2k pembaca</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="bg-gray-400 text-white text-xs font-bold px-2 py-1 rounded">4</span>
+                            <div>
+                                <h4 class="font-medium text-gray-900 text-sm leading-tight mb-1">
+                                    Startup Indonesia Raih Pendanaan $50 Juta
+                                </h4>
+                                <span class="text-gray-500 text-xs">5.8k pembaca</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Widget -->
+                <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white mb-6">
+                    <h3 class="text-lg font-bold mb-4">Cuaca Hari Ini</h3>
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">☀️</div>
+                        <div class="text-3xl font-bold mb-1">32°C</div>
+                        <div class="text-sm opacity-90 mb-3">Cerah Berawan</div>
+                        <div class="text-xs opacity-75">Jakarta, Indonesia</div>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="bg-gray-900 rounded-xl shadow-lg p-6 text-white">
+                    <h3 class="text-lg font-bold mb-3">Newsletter</h3>
+                    <p class="text-sm text-gray-300 mb-4">
+                        Dapatkan berita terbaru langsung di email Anda setiap hari.
+                    </p>
+                    <div class="space-y-3">
+                        <input type="email" placeholder="Email Anda" class="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <button class="w-full bg-red-600 text-white py-2 rounded-lg font-medium hover:bg-red-700 transition-colors">
+                            Berlangganan
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-red-500 mb-4">HotNews</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Portal berita terpercaya yang menyajikan informasi terkini dan akurat untuk masyarakat Indonesia.
+                    </p>
+                    <div class="flex space-x-4">
+                        <button class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                            <span class="text-xs">f</span>
+                        </button>
+                        <button class="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <span class="text-xs">t</span>
+                        </button>
+                        <button class="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                            <span class="text-xs">ig</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Kategori</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Politik</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Ekonomi</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Olahraga</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Teknologi</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Hiburan</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Tentang Kami</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Redaksi</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Karir</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Kontak</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Kontak</h4>
+                    <div class="space-y-2 text-sm text-gray-400">
+                        <p>📧 redaksi@hotnews.id</p>
+                        <p>📞 +62 21 1234 5678</p>
+                        <p>📍 Jakarta, Indonesia</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 HotNews. Seluruh hak cipta dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Newsletter subscription
+        document.querySelector('footer button').addEventListener('click', function() {
+            const email = document.querySelector('footer input[type="email"]').value;
+            if (email) {
+                alert('Terima kasih! Anda telah berlangganan newsletter HotNews.');
+                document.querySelector('footer input[type="email"]').value = '';
+            } else {
+                alert('Silakan masukkan alamat email yang valid.');
+            }
+        });
+
+        // News card interactions
+        document.querySelectorAll('.news-card button').forEach(button => {
+            if (button.textContent.includes('Baca Selengkapnya')) {
+                button.addEventListener('click', function() {
+                    alert('Membuka artikel lengkap...');
+                });
+            }
+        });
+
+        // Category filter buttons
+        document.querySelectorAll('section button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('section button').forEach(btn => {
+                    btn.className = btn.className.replace('bg-red-600 text-white', 'bg-gray-200 text-gray-700');
+                });
+                
+                // Add active class to clicked button
+                this.className = this.className.replace('bg-gray-200 text-gray-700', 'bg-red-600 text-white');
+                
+                alert(`Menampilkan berita kategori: ${this.textContent}`);
+            });
+        });
+
+        // Search functionality
+        document.querySelector('input[placeholder="Cari berita..."]').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value;
+                if (query) {
+                    alert(`Mencari berita: "${query}"`);
+                }
+            }
+        });
+
+        // Social media buttons
+        document.querySelectorAll('footer button').forEach(button => {
+            if (button.textContent === 'f' || button.textContent === 't' || button.textContent === 'ig') {
+                button.addEventListener('click', function() {
+                    const platform = this.textContent === 'f' ? 'Facebook' : 
+                                   this.textContent === 't' ? 'Twitter' : 'Instagram';
+                    alert(`Membuka halaman ${platform} HotNews...`);
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97484e6162f9f916',t:'MTc1NjA5NTcyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

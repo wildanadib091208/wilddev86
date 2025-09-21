@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Nusantara - Sekolah Unggulan Berkarakter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .stats-counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #667eea;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #667eea;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Form Validation Styles */
+        .form-group {
+            position: relative;
+        }
+
+        .form-input {
+            transition: all 0.3s ease;
+        }
+
+        .form-input.valid {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+
+        .form-input.invalid {
+            border-color: #ef4444;
+            background-color: #fef2f2;
+        }
+
+        .validation-message {
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .validation-message.success {
+            color: #10b981;
+        }
+
+        .validation-message.error {
+            color: #ef4444;
+        }
+
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .strength-weak { background-color: #ef4444; width: 25%; }
+        .strength-fair { background-color: #f59e0b; width: 50%; }
+        .strength-good { background-color: #3b82f6; width: 75%; }
+        .strength-strong { background-color: #10b981; width: 100%; }
+
+        .loading-spinner {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Admin Dashboard Styles */
+        .admin-sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .admin-sidebar.active {
+            transform: translateX(0);
+        }
+
+        .data-table {
+            overflow-x: auto;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-approved {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-rejected {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .stats-counter {
+                font-size: 1.8rem;
+            }
+            
+            .hero-gradient {
+                padding: 3rem 0;
+            }
+            
+            .card-hover:hover {
+                transform: none;
+            }
+            
+            /* Touch-friendly buttons */
+            button, .btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Better spacing on mobile */
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Mobile typography */
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+            
+            h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Mobile grid adjustments */
+            .mobile-grid-1 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .mobile-stack {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            
+            /* Modal responsive */
+            .modal-content {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+            }
+        }
+        
+        /* Tablet Responsive Styles */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .stats-counter {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+        
+        /* Large Desktop Styles */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1280px;
+            }
+            
+            .stats-counter {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Landscape mobile orientation */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero-gradient {
+                padding: 2rem 0;
+            }
+            
+            .mobile-landscape-adjust {
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="flex items-center justify-between py-3 lg:py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 lg:space-x-3">
+                    <div class="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-lg lg:text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg lg:text-xl font-bold text-gray-800">SMA Nusantara</h1>
+                        <p class="text-xs lg:text-sm text-gray-600 hidden sm:block">Sekolah Unggulan Berkarakter</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600">Beranda</a>
+                    <div class="relative group">
+                        <a href="#profil" class="nav-link text-gray-700 hover:text-blue-600 flex items-center">
+                            Profil <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="#sejarah" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Sejarah</a>
+                            <a href="#visi-misi" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Visi & Misi</a>
+                            <a href="#struktur" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Struktur Organisasi</a>
+                        </div>
+                    </div>
+                    <a href="#akademik" class="nav-link text-gray-700 hover:text-blue-600">Akademik</a>
+                    <a href="#guru" class="nav-link text-gray-700 hover:text-blue-600">Guru & Staf</a>
+                    <a href="#berita" class="nav-link text-gray-700 hover:text-blue-600">Berita</a>
+                    <a href="#galeri" class="nav-link text-gray-700 hover:text-blue-600">Galeri</a>
+                    <a href="#kontak" class="nav-link text-gray-700 hover:text-blue-600">Kontak</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center space-x-2 lg:space-x-3">
+                    <button onclick="openPPDBModal()" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 lg:px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-300 text-sm lg:text-base whitespace-nowrap">
+                        <i class="fas fa-user-plus mr-1 lg:mr-2"></i><span class="hidden lg:inline">PPDB </span>2024
+                    </button>
+                    <button onclick="openLoginModal()" class="text-blue-600 border border-blue-600 px-2 lg:px-4 py-2 rounded-lg hover:bg-blue-50 transition-all duration-300 text-sm lg:text-base">
+                        <i class="fas fa-sign-in-alt mr-1 lg:mr-2"></i><span class="hidden lg:inline">Login</span>
+                    </button>
+                    <button onclick="openAdminDashboard()" class="text-purple-600 border border-purple-600 px-2 lg:px-4 py-2 rounded-lg hover:bg-purple-50 transition-all duration-300 text-sm lg:text-base">
+                        <i class="fas fa-cog mr-1 lg:mr-2"></i><span class="hidden lg:inline">Admin</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700 p-2 hover:bg-gray-100 rounded-lg transition-colors" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-50 md:hidden">
+            <div class="p-4">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white"></i>
+                        </div>
+                        <span class="text-lg font-bold">SMA Nusantara</span>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <nav class="space-y-4">
+                    <a href="#home" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Beranda</a>
+                    <a href="#profil" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Profil</a>
+                    <a href="#akademik" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Akademik</a>
+                    <a href="#guru" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Guru & Staf</a>
+                    <a href="#berita" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Berita</a>
+                    <a href="#galeri" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Galeri</a>
+                    <a href="#kontak" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Kontak</a>
+                    <div class="pt-4 space-y-3">
+                        <button onclick="openPPDBModal(); toggleMobileMenu();" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-4 rounded-lg font-medium text-base hover:shadow-lg transition-all duration-300">
+                            <i class="fas fa-user-plus mr-2"></i>PPDB 2024
+                        </button>
+                        <button onclick="openLoginModal(); toggleMobileMenu();" class="w-full border-2 border-blue-600 text-blue-600 py-3 px-4 rounded-lg font-medium text-base hover:bg-blue-50 transition-all duration-300">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Login
+                        </button>
+                        <button onclick="openAdminDashboard(); toggleMobileMenu();" class="w-full border-2 border-purple-600 text-purple-600 py-3 px-4 rounded-lg font-medium text-base hover:bg-purple-50 transition-all duration-300">
+                            <i class="fas fa-cog mr-2"></i>Admin Dashboard
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+                        Membangun Generasi 
+                        <span class="text-yellow-300">Unggul</span> & 
+                        <span class="text-yellow-300">Berkarakter</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl mb-6 sm:mb-8 text-blue-100 leading-relaxed">
+                        SMA Nusantara menghadirkan pendidikan berkualitas dengan fasilitas modern dan tenaga pengajar profesional untuk masa depan yang gemilang.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <button onclick="openPPDBModal()" class="bg-yellow-400 text-blue-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-all duration-300 flex items-center justify-center text-sm sm:text-base">
+                            <i class="fas fa-user-plus mr-2"></i>Daftar Sekarang
+                        </button>
+                        <button onclick="scrollToSection('profil')" class="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300 flex items-center justify-center text-sm sm:text-base">
+                            <i class="fas fa-play mr-2"></i>Pelajari Lebih Lanjut
+                        </button>
+                    </div>
+                </div>
+                <div class="relative mt-8 lg:mt-0">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8">
+                        <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                            <div class="text-center">
+                                <div class="stats-counter text-yellow-300 text-xl sm:text-2xl lg:text-4xl">1,200+</div>
+                                <p class="text-blue-100 text-xs sm:text-sm lg:text-base">Siswa Aktif</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-counter text-yellow-300 text-xl sm:text-2xl lg:text-4xl">85+</div>
+                                <p class="text-blue-100 text-xs sm:text-sm lg:text-base">Guru & Staf</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-counter text-yellow-300 text-xl sm:text-2xl lg:text-4xl">95%</div>
+                                <p class="text-blue-100 text-xs sm:text-sm lg:text-base">Lulus PTN</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-counter text-yellow-300 text-xl sm:text-2xl lg:text-4xl">A</div>
+                                <p class="text-blue-100 text-xs sm:text-sm lg:text-base">Akreditasi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Info -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                <div class="text-center card-hover bg-blue-50 p-4 sm:p-6 lg:p-8 rounded-xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-eye text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 lg:mb-4 text-gray-800">Visi Kami</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Menjadi sekolah unggulan yang menghasilkan lulusan berkarakter, berprestasi, dan siap menghadapi tantangan global.</p>
+                </div>
+                <div class="text-center card-hover bg-purple-50 p-4 sm:p-6 lg:p-8 rounded-xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-bullseye text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 lg:mb-4 text-gray-800">Misi Kami</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Menyelenggarakan pendidikan berkualitas dengan pendekatan holistik yang mengembangkan potensi akademik dan non-akademik.</p>
+                </div>
+                <div class="text-center card-hover bg-green-50 p-4 sm:p-6 lg:p-8 rounded-xl sm:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-certificate text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 lg:mb-4 text-gray-800">Akreditasi A</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Terakreditasi A dari Badan Akreditasi Nasional Sekolah/Madrasah dengan standar pendidikan terbaik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak" class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami siap membantu Anda dengan informasi lebih lanjut tentang SMA Nusantara</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Form Kontak -->
+                <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6">Kirim Pesan</h3>
+                    <form id="contactForm" class="space-y-4 sm:space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                            <div class="form-group">
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nama Lengkap</label>
+                                <input type="text" id="contactName" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan nama lengkap" required>
+                                <div class="validation-message" id="contactNameMsg"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Email</label>
+                                <input type="email" id="contactEmail" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan email" required>
+                                <div class="validation-message" id="contactEmailMsg"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nomor Telepon</label>
+                            <input type="tel" id="contactPhone" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan nomor telepon" required>
+                            <div class="validation-message" id="contactPhoneMsg"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Subjek</label>
+                            <select id="contactSubject" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" required>
+                                <option value="">Pilih subjek</option>
+                                <option value="ppdb">Informasi PPDB</option>
+                                <option value="akademik">Informasi Akademik</option>
+                                <option value="fasilitas">Fasilitas Sekolah</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                            <div class="validation-message" id="contactSubjectMsg"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Pesan</label>
+                            <textarea rows="4" id="contactMessage" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Tulis pesan Anda..." required></textarea>
+                            <div class="validation-message" id="contactMessageMsg"></div>
+                        </div>
+                        <button type="submit" id="contactSubmitBtn" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 text-sm sm:text-base flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Info Kontak -->
+                <div class="space-y-6 sm:space-y-8">
+                    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6">Informasi Kontak</h3>
+                        <div class="space-y-3 sm:space-y-4">
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-blue-600 text-sm sm:text-base"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Alamat</p>
+                                    <p class="text-gray-600 text-xs sm:text-sm">Jl. Pendidikan No. 123, Jakarta Selatan 12345</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-green-600 text-sm sm:text-base"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Telepon</p>
+                                    <p class="text-gray-600 text-xs sm:text-sm">(021) 1234-5678</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-purple-600 text-sm sm:text-base"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Email</p>
+                                    <p class="text-gray-600 text-xs sm:text-sm">info@smanusantara.sch.id</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-clock text-orange-600 text-sm sm:text-base"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Jam Operasional</p>
+                                    <p class="text-gray-600 text-xs sm:text-sm">Senin - Jumat: 07:00 - 16:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold">SMA Nusantara</h3>
+                        <p class="text-sm text-gray-400">Sekolah Unggulan Berkarakter</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm">© 2023 SMA Nusantara. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PPDB Modal -->
+    <div id="ppdbModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+            <div class="p-4 sm:p-6 border-b border-gray-200">
+                <div class="flex justify-between items-start">
+                    <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 pr-4 leading-tight">Pendaftaran Peserta Didik Baru 2024</h2>
+                    <button onclick="closePPDBModal()" class="text-gray-500 hover:text-gray-700 flex-shrink-0">
+                        <i class="fas fa-times text-lg sm:text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4 sm:p-6">
+                <div class="mb-6">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <h3 class="font-bold text-blue-800 mb-2">Informasi PPDB 2024</h3>
+                        <ul class="text-blue-700 text-sm space-y-1">
+                            <li>• Pendaftaran: 1 Januari - 31 Maret 2024</li>
+                            <li>• Tes Seleksi: 5-7 April 2024</li>
+                            <li>• Pengumuman: 15 April 2024</li>
+                            <li>• Daftar Ulang: 20-25 April 2024</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <form id="ppdbForm" class="space-y-4 sm:space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nama Lengkap Siswa</label>
+                            <input type="text" id="ppdbName" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nama lengkap sesuai ijazah" required>
+                            <div class="validation-message" id="ppdbNameMsg"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">NISN</label>
+                            <input type="text" id="ppdbNISN" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nomor Induk Siswa Nasional" required>
+                            <div class="validation-message" id="ppdbNISNMsg"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Tempat Lahir</label>
+                            <input type="text" id="ppdbBirthPlace" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Tempat lahir" required>
+                            <div class="validation-message" id="ppdbBirthPlaceMsg"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Tanggal Lahir</label>
+                            <input type="date" id="ppdbBirthDate" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" required>
+                            <div class="validation-message" id="ppdbBirthDateMsg"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Asal Sekolah</label>
+                        <input type="text" id="ppdbSchool" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nama sekolah SMP/MTs asal" required>
+                        <div class="validation-message" id="ppdbSchoolMsg"></div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nama Orang Tua/Wali</label>
+                            <input type="text" id="ppdbParent" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nama lengkap orang tua/wali" required>
+                            <div class="validation-message" id="ppdbParentMsg"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nomor Telepon</label>
+                            <input type="tel" id="ppdbPhone" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nomor telepon yang bisa dihubungi" required>
+                            <div class="validation-message" id="ppdbPhoneMsg"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Email</label>
+                        <input type="email" id="ppdbEmail" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Email aktif" required>
+                        <div class="validation-message" id="ppdbEmailMsg"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Alamat Lengkap</label>
+                        <textarea rows="3" id="ppdbAddress" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Alamat lengkap tempat tinggal" required></textarea>
+                        <div class="validation-message" id="ppdbAddressMsg"></div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <h4 class="font-bold text-yellow-800 mb-2">Dokumen yang Diperlukan:</h4>
+                        <ul class="text-yellow-700 text-sm space-y-1">
+                            <li>• Fotocopy Ijazah SMP/MTs (dilegalisir)</li>
+                            <li>• Fotocopy SKHUN SMP/MTs (dilegalisir)</li>
+                            <li>• Fotocopy Akta Kelahiran</li>
+                            <li>• Fotocopy Kartu Keluarga</li>
+                            <li>• Pas foto 3x4 (3 lembar)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <input type="checkbox" id="ppdbAgreement" required class="mr-2 sm:mr-3 mt-1">
+                        <label for="ppdbAgreement" class="text-xs sm:text-sm text-gray-700">
+                            Saya menyetujui <a href="#" class="text-blue-600 hover:underline">syarat dan ketentuan</a> yang berlaku
+                        </label>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <button type="button" onclick="closePPDBModal()" class="flex-1 border border-gray-300 text-gray-700 py-2 sm:py-3 rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base">
+                            Batal
+                        </button>
+                        <button type="submit" id="ppdbSubmitBtn" class="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 sm:py-3 rounded-lg hover:shadow-lg transition-all duration-300 text-sm sm:text-base flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i>Daftar Sekarang
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-white rounded-xl max-w-md w-full mx-2 sm:mx-0">
+            <div class="p-4 sm:p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">Login Sistem</h2>
+                    <button onclick="closeLoginModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-lg sm:text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4 sm:p-6">
+                <form id="loginForm" class="space-y-4 sm:space-y-6">
+                    <div class="form-group">
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Username/Email</label>
+                        <input type="text" id="loginUsername" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan username atau email" required>
+                        <div class="validation-message" id="loginUsernameMsg"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Password</label>
+                        <div class="relative">
+                            <input type="password" id="loginPassword" class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base pr-10" placeholder="Masukkan password" required>
+                            <button type="button" onclick="togglePasswordVisibility('loginPassword')" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-eye" id="loginPasswordToggle"></i>
+                            </button>
+                        </div>
+                        <div class="validation-message" id="loginPasswordMsg"></div>
+                        <div class="password-strength" id="loginPasswordStrength"></div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="loginRemember" class="mr-2">
+                            <label for="loginRemember" class="text-xs sm:text-sm text-gray-700">Ingat saya</label>
+                        </div>
+                        <a href="#" class="text-xs sm:text-sm text-blue-600 hover:underline">Lupa password?</a>
+                    </div>
+                    <button type="submit" id="loginSubmitBtn" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 sm:py-3 rounded-lg hover:shadow-lg transition-all duration-300 text-sm sm:text-base flex items-center justify-center">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </button>
+                </form>
+                
+                <div class="mt-4 sm:mt-6 text-center">
+                    <p class="text-gray-600 text-xs sm:text-sm">Demo Login: admin/admin123</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div id="adminModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex h-full">
+            <!-- Sidebar -->
+            <div id="adminSidebar" class="admin-sidebar bg-gray-800 text-white w-64 h-full overflow-y-auto">
+                <div class="p-4 border-b border-gray-700">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg font-bold">Admin Dashboard</h2>
+                        <button onclick="closeAdminDashboard()" class="text-gray-400 hover:text-white lg:hidden">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <nav class="p-4">
+                    <ul class="space-y-2">
+                        <li>
+                            <button onclick="showAdminSection('overview')" class="admin-nav-btn w-full text-left px-3 py-2 rounded hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-chart-bar mr-2"></i>Overview
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="showAdminSection('ppdb')" class="admin-nav-btn w-full text-left px-3 py-2 rounded hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-user-plus mr-2"></i>Data PPDB
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="showAdminSection('contacts')" class="admin-nav-btn w-full text-left px-3 py-2 rounded hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-envelope mr-2"></i>Pesan Kontak
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 bg-white overflow-y-auto">
+                <div class="p-4 border-b border-gray-200 lg:hidden">
+                    <button onclick="toggleAdminSidebar()" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h1 class="text-2xl font-bold text-gray-800" id="adminTitle">Dashboard Overview</h1>
+                        <button onclick="closeAdminDashboard()" class="hidden lg:block text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Overview Section -->
+                    <div id="adminOverview" class="admin-section">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            <div class="bg-blue-50 p-6 rounded-lg">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-user-plus text-white"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-blue-600 text-sm font-medium">Total PPDB</p>
+                                        <p class="text-2xl font-bold text-gray-800" id="totalPPDB">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-green-50 p-6 rounded-lg">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-envelope text-white"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-green-600 text-sm font-medium">Pesan Kontak</p>
+                                        <p class="text-2xl font-bold text-gray-800" id="totalContacts">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-purple-50 p-6 rounded-lg">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-chart-line text-white"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-purple-600 text-sm font-medium">Hari Ini</p>
+                                        <p class="text-2xl font-bold text-gray-800" id="todayStats">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4">Aktivitas Terbaru</h3>
+                            <div class="space-y-3" id="recentActivity">
+                                <p class="text-gray-500 text-sm">Belum ada aktivitas</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PPDB Section -->
+                    <div id="adminPPDB" class="admin-section hidden">
+                        <div class="bg-white border border-gray-200 rounded-lg">
+                            <div class="p-6 border-b border-gray-200">
+                                <h3 class="text-lg font-bold text-gray-800">Data Pendaftaran PPDB</h3>
+                            </div>
+                            <div class="data-table">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NISN</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ppdbTableBody" class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">Belum ada data pendaftaran</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacts Section -->
+                    <div id="adminContacts" class="admin-section hidden">
+                        <div class="bg-white border border-gray-200 rounded-lg">
+                            <div class="p-6 border-b border-gray-200">
+                                <h3 class="text-lg font-bold text-gray-800">Pesan Kontak</h3>
+                            </div>
+                            <div class="data-table">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subjek</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="contactsTableBody" class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">Belum ada pesan kontak</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Toast -->
+    <div id="toast" class="fixed top-4 right-4 z-50 hidden">
+        <div class="bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-w-sm">
+            <div class="flex items-center">
+                <div id="toastIcon" class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                    <i id="toastIconClass" class="text-white"></i>
+                </div>
+                <div>
+                    <p id="toastTitle" class="font-semibold text-gray-800"></p>
+                    <p id="toastMessage" class="text-sm text-gray-600"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        })();
+
+        // Mock Database
+        let mockDatabase = {
+            ppdb: JSON.parse(localStorage.getItem('ppdb_data') || '[]'),
+            contacts: JSON.parse(localStorage.getItem('contact_data') || '[]'),
+            users: JSON.parse(localStorage.getItem('user_data') || '[{"id":1,"username":"admin","email":"admin@smanusantara.sch.id","role":"Administrator","status":"active"}]'),
+            settings: JSON.parse(localStorage.getItem('system_settings') || '{"emailServiceId":"","emailTemplateId":"","emailPublicKey":"","schoolName":"SMA Nusantara","schoolEmail":"info@smanusantara.sch.id","schoolPhone":"(021) 1234-5678"}')
+        };
+
+        // Form Validation Functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePhone(phone) {
+            const re = /^[\+]?[1-9][\d]{0,15}$/;
+            return re.test(phone.replace(/[\s\-\(\)]/g, ''));
+        }
+
+        function validateNISN(nisn) {
+            return /^\d{10}$/.test(nisn);
+        }
+
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            let feedback = [];
+
+            if (password.length >= 8) strength++;
+            else feedback.push("Minimal 8 karakter");
+
+            if (/[a-z]/.test(password)) strength++;
+            else feedback.push("Huruf kecil");
+
+            if (/[A-Z]/.test(password)) strength++;
+            else feedback.push("Huruf besar");
+
+            if (/[0-9]/.test(password)) strength++;
+            else feedback.push("Angka");
+
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            else feedback.push("Karakter khusus");
+
+            const levels = ['', 'strength-weak', 'strength-fair', 'strength-good', 'strength-strong'];
+            const labels = ['', 'Lemah', 'Cukup', 'Baik', 'Kuat'];
+
+            return {
+                score: strength,
+                level: levels[strength],
+                label: labels[strength],
+                feedback: feedback
+            };
+        }
+
+        function showValidationMessage(fieldId, message, isValid) {
+            const field = document.getElementById(fieldId);
+            const msgElement = document.getElementById(fieldId + 'Msg');
+            
+            if (field && msgElement) {
+                field.classList.remove('valid', 'invalid');
+                field.classList.add(isValid ? 'valid' : 'invalid');
+                
+                msgElement.classList.remove('success', 'error');
+                msgElement.classList.add(isValid ? 'success' : 'error');
+                msgElement.textContent = message;
+            }
+        }
+
+        function validateField(fieldId, value, validationType) {
+            let isValid = false;
+            let message = '';
+
+            switch (validationType) {
+                case 'required':
+                    isValid = value.trim() !== '';
+                    message = isValid ? '✓ Valid' : 'Field ini wajib diisi';
+                    break;
+                case 'email':
+                    isValid = validateEmail(value);
+                    message = isValid ? '✓ Email valid' : 'Format email tidak valid';
+                    break;
+                case 'phone':
+                    isValid = validatePhone(value);
+                    message = isValid ? '✓ Nomor telepon valid' : 'Format nomor telepon tidak valid';
+                    break;
+                case 'nisn':
+                    isValid = validateNISN(value);
+                    message = isValid ? '✓ NISN valid' : 'NISN harus 10 digit angka';
+                    break;
+                case 'date':
+                    const date = new Date(value);
+                    const now = new Date();
+                    const age = now.getFullYear() - date.getFullYear();
+                    isValid = value !== '' && age >= 14 && age <= 20;
+                    message = isValid ? '✓ Tanggal lahir valid' : 'Usia harus antara 14-20 tahun';
+                    break;
+            }
+
+            showValidationMessage(fieldId, message, isValid);
+            return isValid;
+        }
+
+        // Real-time validation
+        function setupFormValidation() {
+            // Contact Form
+            const contactFields = [
+                { id: 'contactName', type: 'required' },
+                { id: 'contactEmail', type: 'email' },
+                { id: 'contactPhone', type: 'phone' },
+                { id: 'contactSubject', type: 'required' },
+                { id: 'contactMessage', type: 'required' }
+            ];
+
+            contactFields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (element) {
+                    element.addEventListener('blur', () => {
+                        validateField(field.id, element.value, field.type);
+                    });
+                }
+            });
+
+            // PPDB Form
+            const ppdbFields = [
+                { id: 'ppdbName', type: 'required' },
+                { id: 'ppdbNISN', type: 'nisn' },
+                { id: 'ppdbBirthPlace', type: 'required' },
+                { id: 'ppdbBirthDate', type: 'date' },
+                { id: 'ppdbSchool', type: 'required' },
+                { id: 'ppdbParent', type: 'required' },
+                { id: 'ppdbPhone', type: 'phone' },
+                { id: 'ppdbEmail', type: 'email' },
+                { id: 'ppdbAddress', type: 'required' }
+            ];
+
+            ppdbFields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (element) {
+                    element.addEventListener('blur', () => {
+                        validateField(field.id, element.value, field.type);
+                    });
+                }
+            });
+
+            // Login Form
+            const loginUsername = document.getElementById('loginUsername');
+            const loginPassword = document.getElementById('loginPassword');
+
+            if (loginUsername) {
+                loginUsername.addEventListener('blur', () => {
+                    validateField('loginUsername', loginUsername.value, 'required');
+                });
+            }
+
+            if (loginPassword) {
+                loginPassword.addEventListener('input', () => {
+                    const strength = checkPasswordStrength(loginPassword.value);
+                    const strengthBar = document.getElementById('loginPasswordStrength');
+                    
+                    if (strengthBar) {
+                        strengthBar.className = `password-strength ${strength.level}`;
+                    }
+                    
+                    const message = strength.score > 0 ? `${strength.label} - ${strength.feedback.join(', ')}` : '';
+                    showValidationMessage('loginPassword', message, strength.score >= 3);
+                });
+            }
+        }
+
+        // Toast Notification
+        function showToast(title, message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastIcon = document.getElementById('toastIcon');
+            const toastIconClass = document.getElementById('toastIconClass');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+
+            const types = {
+                success: { bg: 'bg-green-500', icon: 'fas fa-check' },
+                error: { bg: 'bg-red-500', icon: 'fas fa-times' },
+                warning: { bg: 'bg-yellow-500', icon: 'fas fa-exclamation' },
+                info: { bg: 'bg-blue-500', icon: 'fas fa-info' }
+            };
+
+            const config = types[type] || types.success;
+
+            toastIcon.className = `flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-3 ${config.bg}`;
+            toastIconClass.className = `${config.icon} text-white`;
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Email Service
+        async function sendEmail(templateParams, templateId = 'template_contact') {
+            try {
+                const result = await emailjs.send(
+                    mockDatabase.settings.emailServiceId || 'YOUR_SERVICE_ID',
+                    templateId,
+                    templateParams
+                );
+                return { success: true, result };
+            } catch (error) {
+                console.error('Email send failed:', error);
+                return { success: false, error };
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Smooth Scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Password Visibility Toggle
+        function togglePasswordVisibility(fieldId) {
+            const field = document.getElementById(fieldId);
+            const toggle = document.getElementById(fieldId + 'Toggle');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                toggle.className = 'fas fa-eye-slash';
+            } else {
+                field.type = 'password';
+                toggle.className = 'fas fa-eye';
+            }
+        }
+
+        // PPDB Modal
+        function openPPDBModal() {
+            document.getElementById('ppdbModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePPDBModal() {
+            document.getElementById('ppdbModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Login Modal
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Admin Dashboard
+        function openAdminDashboard() {
+            document.getElementById('adminModal').classList.remove('hidden');
+            document.getElementById('adminSidebar').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            updateAdminStats();
+            showAdminSection('overview');
+        }
+
+        function closeAdminDashboard() {
+            document.getElementById('adminModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleAdminSidebar() {
+            document.getElementById('adminSidebar').classList.toggle('active');
+        }
+
+        function showAdminSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.admin-section').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            // Show selected section
+            document.getElementById('admin' + section.charAt(0).toUpperCase() + section.slice(1)).classList.remove('hidden');
+
+            // Update title
+            const titles = {
+                overview: 'Dashboard Overview',
+                ppdb: 'Data Pendaftaran PPDB',
+                contacts: 'Pesan Kontak'
+            };
+            document.getElementById('adminTitle').textContent = titles[section];
+
+            // Update active nav
+            document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+                btn.classList.remove('bg-gray-700');
+            });
+            event.target.classList.add('bg-gray-700');
+
+            // Load section data
+            if (section === 'ppdb') loadPPDBData();
+            if (section === 'contacts') loadContactsData();
+        }
+
+        function updateAdminStats() {
+            document.getElementById('totalPPDB').textContent = mockDatabase.ppdb.length;
+            document.getElementById('totalContacts').textContent = mockDatabase.contacts.length;
+            
+            const today = new Date().toDateString();
+            const todayCount = mockDatabase.ppdb.filter(item => 
+                new Date(item.createdAt).toDateString() === today
+            ).length + mockDatabase.contacts.filter(item => 
+                new Date(item.createdAt).toDateString() === today
+            ).length;
+            document.getElementById('todayStats').textContent = todayCount;
+
+            // Update recent activity
+            const recentActivity = document.getElementById('recentActivity');
+            const activities = [
+                ...mockDatabase.ppdb.slice(-3).map(item => ({
+                    type: 'PPDB',
+                    message: `Pendaftaran baru dari ${item.name}`,
+                    time: new Date(item.createdAt).toLocaleString()
+                })),
+                ...mockDatabase.contacts.slice(-3).map(item => ({
+                    type: 'Kontak',
+                    message: `Pesan baru dari ${item.name}`,
+                    time: new Date(item.createdAt).toLocaleString()
+                }))
+            ].sort((a, b) => new Date(b.time) - new Date(a.time)).slice(0, 5);
+
+            if (activities.length > 0) {
+                recentActivity.innerHTML = activities.map(activity => `
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <div>
+                            <p class="text-sm font-medium text-gray-800">${activity.message}</p>
+                            <p class="text-xs text-gray-500">${activity.time}</p>
+                        </div>
+                        <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded">${activity.type}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Load PPDB Data
+        function loadPPDBData() {
+            const tbody = document.getElementById('ppdbTableBody');
+            if (mockDatabase.ppdb.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Belum ada data pendaftaran</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = mockDatabase.ppdb.map((item, index) => `
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${index + 1}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.name}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.nisn}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.email}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="status-badge status-${item.status}">${item.status === 'pending' ? 'Menunggu' : item.status === 'approved' ? 'Diterima' : 'Ditolak'}</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button onclick="viewPPDBDetail(${item.id})" class="text-blue-600 hover:text-blue-900 mr-3">Detail</button>
+                        <button onclick="updatePPDBStatus(${item.id}, 'approved')" class="text-green-600 hover:text-green-900 mr-3">Terima</button>
+                        <button onclick="updatePPDBStatus(${item.id}, 'rejected')" class="text-red-600 hover:text-red-900">Tolak</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Load Contacts Data
+        function loadContactsData() {
+            const tbody = document.getElementById('contactsTableBody');
+            if (mockDatabase.contacts.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Belum ada pesan kontak</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = mockDatabase.contacts.map((item, index) => `
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${index + 1}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.name}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.email}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.subject}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${new Date(item.createdAt).toLocaleDateString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button onclick="viewContactDetail(${item.id})" class="text-blue-600 hover:text-blue-900 mr-3">Detail</button>
+                        <button onclick="replyContact(${item.id})" class="text-green-600 hover:text-green-900">Balas</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Admin Functions
+        function viewPPDBDetail(id) {
+            const item = mockDatabase.ppdb.find(p => p.id === id);
+            if (item) {
+                alert(`Detail Pendaftaran:\n\nNama: ${item.name}\nNISN: ${item.nisn}\nTempat Lahir: ${item.birthPlace}\nTanggal Lahir: ${item.birthDate}\nAsal Sekolah: ${item.school}\nOrang Tua: ${item.parent}\nTelepon: ${item.phone}\nEmail: ${item.email}\nAlamat: ${item.address}\nStatus: ${item.status}\nTanggal Daftar: ${new Date(item.createdAt).toLocaleString()}`);
+            }
+        }
+
+        function updatePPDBStatus(id, status) {
+            const item = mockDatabase.ppdb.find(p => p.id === id);
+            if (item) {
+                item.status = status;
+                localStorage.setItem('ppdb_data', JSON.stringify(mockDatabase.ppdb));
+                loadPPDBData();
+                updateAdminStats();
+                showToast('Status Updated', `Status pendaftaran ${item.name} berhasil diubah menjadi ${status}`, 'success');
+            }
+        }
+
+        function viewContactDetail(id) {
+            const item = mockDatabase.contacts.find(c => c.id === id);
+            if (item) {
+                alert(`Detail Pesan:\n\nNama: ${item.name}\nEmail: ${item.email}\nTelepon: ${item.phone}\nSubjek: ${item.subject}\nPesan: ${item.message}\nTanggal: ${new Date(item.createdAt).toLocaleString()}`);
+            }
+        }
+
+        function replyContact(id) {
+            const item = mockDatabase.contacts.find(c => c.id === id);
+            if (item) {
+                const reply = prompt(`Balas pesan dari ${item.name}:`);
+                if (reply) {
+                    showToast('Balasan Terkirim', `Balasan untuk ${item.name} berhasil dikirim`, 'success');
+                }
+            }
+        }
+
+        // Form Submissions
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('contactSubmitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading
+            submitBtn.innerHTML = '<div class="loading-spinner"></div>Mengirim...';
+            submitBtn.disabled = true;
+            
+            // Validate all fields
+            const fields = [
+                { id: 'contactName', type: 'required' },
+                { id: 'contactEmail', type: 'email' },
+                { id: 'contactPhone', type: 'phone' },
+                { id: 'contactSubject', type: 'required' },
+                { id: 'contactMessage', type: 'required' }
+            ];
+            
+            let isValid = true;
+            fields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (!validateField(field.id, element.value, field.type)) {
+                    isValid = false;
+                }
+            });
+            
+            if (!isValid) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                showToast('Error', 'Mohon perbaiki data yang tidak valid', 'error');
+                return;
+            }
+            
+            // Collect form data
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                phone: document.getElementById('contactPhone').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Save to mock database
+            mockDatabase.contacts.push({
+                id: Date.now(),
+                ...formData
+            });
+            localStorage.setItem('contact_data', JSON.stringify(mockDatabase.contacts));
+            
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            showToast('Berhasil!', 'Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.', 'success');
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+
+        document.getElementById('ppdbForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('ppdbSubmitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading
+            submitBtn.innerHTML = '<div class="loading-spinner"></div>Memproses...';
+            submitBtn.disabled = true;
+            
+            // Validate all fields
+            const fields = [
+                { id: 'ppdbName', type: 'required' },
+                { id: 'ppdbNISN', type: 'nisn' },
+                { id: 'ppdbBirthPlace', type: 'required' },
+                { id: 'ppdbBirthDate', type: 'date' },
+                { id: 'ppdbSchool', type: 'required' },
+                { id: 'ppdbParent', type: 'required' },
+                { id: 'ppdbPhone', type: 'phone' },
+                { id: 'ppdbEmail', type: 'email' },
+                { id: 'ppdbAddress', type: 'required' }
+            ];
+            
+            let isValid = true;
+            fields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (!validateField(field.id, element.value, field.type)) {
+                    isValid = false;
+                }
+            });
+            
+            // Check agreement
+            if (!document.getElementById('ppdbAgreement').checked) {
+                showToast('Error', 'Anda harus menyetujui syarat dan ketentuan', 'error');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                showToast('Error', 'Mohon perbaiki data yang tidak valid', 'error');
+                return;
+            }
+            
+            // Check if NISN already exists
+            const existingNISN = mockDatabase.ppdb.find(item => 
+                item.nisn === document.getElementById('ppdbNISN').value
+            );
+            
+            if (existingNISN) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                showToast('Error', 'NISN sudah terdaftar dalam sistem', 'error');
+                return;
+            }
+            
+            // Collect form data
+            const formData = {
+                name: document.getElementById('ppdbName').value,
+                nisn: document.getElementById('ppdbNISN').value,
+                birthPlace: document.getElementById('ppdbBirthPlace').value,
+                birthDate: document.getElementById('ppdbBirthDate').value,
+                school: document.getElementById('ppdbSchool').value,
+                parent: document.getElementById('ppdbParent').value,
+                phone: document.getElementById('ppdbPhone').value,
+                email: document.getElementById('ppdbEmail').value,
+                address: document.getElementById('ppdbAddress').value,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+            };
+            
+            // Save to mock database
+            const registrationNumber = `PPDB${Date.now()}`;
+            mockDatabase.ppdb.push({
+                id: Date.now(),
+                registrationNumber: registrationNumber,
+                ...formData
+            });
+            localStorage.setItem('ppdb_data', JSON.stringify(mockDatabase.ppdb));
+            
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            showToast('Pendaftaran Berhasil!', `Terima kasih ${formData.name}. Nomor registrasi Anda: ${registrationNumber}`, 'success');
+            
+            // Close modal
+            setTimeout(() => {
+                closePPDBModal();
+            }, 2000);
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('loginSubmitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading
+            submitBtn.innerHTML = '<div class="loading-spinner"></div>Masuk...';
+            submitBtn.disabled = true;
+            
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Validate fields
+            let isValid = true;
+            if (!validateField('loginUsername', username, 'required')) isValid = false;
+            if (!validateField('loginPassword', password, 'required')) isValid = false;
+            
+            if (!isValid) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            // Simulate login process
+            setTimeout(() => {
+                // Check credentials (demo purposes - in real app, this would be server-side)
+                const validCredentials = [
+                    { username: 'admin', password: 'admin123', role: 'Administrator' },
+                    { username: 'guru', password: 'guru123', role: 'Guru' },
+                    { username: 'staff', password: 'staff123', role: 'Staff' }
+                ];
+                
+                const user = validCredentials.find(cred => 
+                    cred.username === username && cred.password === password
+                );
+                
+                if (user) {
+                    // Store login session
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        username: user.username,
+                        role: user.role,
+                        loginTime: new Date().toISOString()
+                    }));
+                    
+                    showToast('Login Berhasil!', `Selamat datang, ${user.username}!`, 'success');
+                    
+                    // Close login modal
+                    setTimeout(() => {
+                        closeLoginModal();
+                        
+                        // If admin, open dashboard
+                        if (user.username === 'admin') {
+                            setTimeout(() => {
+                                openAdminDashboard();
+                            }, 500);
+                        }
+                    }, 1000);
+                    
+                    // Reset form
+                    this.reset();
+                } else {
+                    showToast('Login Gagal', 'Username atau password salah. Coba: admin/admin123', 'error');
+                }
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setupFormValidation();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97f8bb8be04789be',t:'MTc1Nzk0NTY4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

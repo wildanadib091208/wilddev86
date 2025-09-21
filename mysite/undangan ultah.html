@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Wildan! 🎉</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 1s ease-out;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .cake-layers {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .cake-layer {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            opacity: 0;
+            animation: layerAppear 0.8s ease-out forwards;
+        }
+        
+        .layer-1 {
+            bottom: 0;
+            width: 150px;
+            height: 40px;
+            background: #8B4513;
+            animation-delay: 0.2s;
+        }
+        
+        .layer-2 {
+            bottom: 35px;
+            width: 120px;
+            height: 35px;
+            background: #FFB6C1;
+            animation-delay: 0.4s;
+        }
+        
+        .layer-3 {
+            bottom: 65px;
+            width: 90px;
+            height: 30px;
+            background: #87CEEB;
+            animation-delay: 0.6s;
+        }
+        
+        .loading-candles {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            animation: layerAppear 0.5s ease-out 0.8s forwards;
+        }
+        
+        .loading-candle {
+            width: 4px;
+            height: 20px;
+            background: #FFD700;
+            position: relative;
+        }
+        
+        .loading-candle::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 8px;
+            background: radial-gradient(circle, #ffd700 0%, #ff6b6b 70%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes layerAppear {
+            0% { 
+                opacity: 0; 
+                transform: translateX(-50%) translateY(50px) scale(0.5);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+        }
+        
+        .fredoka {
+            font-family: 'Fredoka One', cursive;
+        }
+        
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f39c12;
+            animation: confetti-fall 3s linear infinite;
+            z-index: 1000;
+        }
+        
+        /* Emoji Rain */
+        .emoji-rain {
+            position: fixed;
+            font-size: 24px;
+            animation: emoji-fall 8s linear infinite;
+            z-index: 999;
+            pointer-events: none;
+        }
+        
+        .confetti:nth-child(odd) {
+            background: #e74c3c;
+            animation-delay: -0.5s;
+        }
+        
+        .confetti:nth-child(3n) {
+            background: #3498db;
+            animation-delay: -1s;
+        }
+        
+        .confetti:nth-child(4n) {
+            background: #9b59b6;
+            animation-delay: -1.5s;
+        }
+        
+        .confetti:nth-child(5n) {
+            background: #2ecc71;
+            animation-delay: -2s;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes emoji-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Balloon Animation */
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Neon Disco Lights */
+        .disco-light {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: disco-blink 2s ease-in-out infinite;
+            z-index: 998;
+        }
+        
+        .disco-light:nth-child(odd) {
+            animation-delay: 0.5s;
+        }
+        
+        .disco-light:nth-child(3n) {
+            animation-delay: 1s;
+        }
+        
+        .disco-light:nth-child(4n) {
+            animation-delay: 1.5s;
+        }
+        
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: #333;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        
+        @keyframes disco-blink {
+            0%, 100% { 
+                opacity: 0.3; 
+                box-shadow: 0 0 10px currentColor;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1; 
+                box-shadow: 0 0 30px currentColor, 0 0 50px currentColor;
+                transform: scale(1.2);
+            }
+        }
+        
+        /* Sparkle Animation */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+        }
+        
+        /* Shooting Star */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 18px #fff;
+            animation: shooting 3s linear infinite;
+            z-index: 997;
+        }
+        
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, #fff, transparent);
+            transform-origin: 0 50%;
+            transform: rotate(-45deg);
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes shooting {
+            0% {
+                transform: translateX(-100px) translateY(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        /* Glowing Effect */
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .glow-pulse {
+            animation: glowPulse 1.5s ease-in-out infinite;
+        }
+        
+        .glow-rainbow {
+            animation: glowRainbow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px #ff6b6b; }
+            to { box-shadow: 0 0 30px #4ecdc4, 0 0 40px #45b7d1; }
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(255, 107, 107, 1), 0 0 50px rgba(78, 205, 196, 0.8);
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes glowRainbow {
+            0% { box-shadow: 0 0 20px #ff6b6b, 0 0 30px #ff6b6b; }
+            16% { box-shadow: 0 0 20px #feca57, 0 0 30px #feca57; }
+            33% { box-shadow: 0 0 20px #48dbfb, 0 0 30px #48dbfb; }
+            50% { box-shadow: 0 0 20px #0abde3, 0 0 30px #0abde3; }
+            66% { box-shadow: 0 0 20px #ff9ff3, 0 0 30px #ff9ff3; }
+            83% { box-shadow: 0 0 20px #54a0ff, 0 0 30px #54a0ff; }
+            100% { box-shadow: 0 0 20px #ff6b6b, 0 0 30px #ff6b6b; }
+        }
+        
+        /* Bounce Animation */
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+        
+        /* Typing Effect */
+        .typing {
+            overflow: hidden;
+            border-right: 3px solid #ff6b6b;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff6b6b; }
+        }
+        
+        /* Flip Number Animation */
+        .flip {
+            animation: flip 0.6s ease-in-out;
+        }
+        
+        @keyframes flip {
+            0% { transform: rotateY(0); }
+            50% { transform: rotateY(-90deg); }
+            100% { transform: rotateY(0); }
+        }
+        
+        /* Candle Flicker */
+        .candle-flame {
+            width: 8px;
+            height: 12px;
+            background: radial-gradient(circle, #ffd700 0%, #ff6b6b 70%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 1s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0% { transform: rotate(-2deg) scale(1); }
+            100% { transform: rotate(2deg) scale(1.1); }
+        }
+        
+        /* Pop Animation */
+        .pop {
+            animation: pop 0.3s ease-out;
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Slide In Animations */
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Zoom Animation */
+        .zoom-in {
+            animation: zoomIn 1s ease-out;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Rainbow Text */
+        .rainbow-text {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s ease infinite;
+        }
+        
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Section Transitions */
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Interactive Elements */
+        .interactive:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .wiggle:hover {
+            animation: wiggle 0.5s ease-in-out;
+        }
+        
+        .rotate-hover:hover {
+            animation: rotateHover 0.6s ease-in-out;
+        }
+        
+        .shake:hover {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .pulse-hover:hover {
+            animation: pulseHover 0.8s ease-in-out;
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        @keyframes rotateHover {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        @keyframes pulseHover {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        .balloon-pop {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .balloon-pop:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Gift Box Animation */
+        .gift-box {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gift-lid {
+            transition: transform 0.5s ease;
+        }
+        
+        .gift-box.opened .gift-lid {
+            transform: translateY(-20px) rotateX(-45deg);
+        }
+        
+        /* Parallax Elements */
+        .parallax-element {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .parallax-slow {
+            animation: parallaxSlow 20s linear infinite;
+        }
+        
+        .parallax-medium {
+            animation: parallaxMedium 15s linear infinite;
+        }
+        
+        .parallax-fast {
+            animation: parallaxFast 10s linear infinite;
+        }
+        
+        @keyframes parallaxSlow {
+            0% { transform: translateY(100vh) translateX(-50px); }
+            100% { transform: translateY(-100px) translateX(50px); }
+        }
+        
+        @keyframes parallaxMedium {
+            0% { transform: translateY(100vh) translateX(30px); }
+            100% { transform: translateY(-100px) translateX(-30px); }
+        }
+        
+        @keyframes parallaxFast {
+            0% { transform: translateY(100vh) translateX(-20px); }
+            100% { transform: translateY(-100px) translateX(20px); }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="cake-layers">
+            <div class="cake-layer layer-1"></div>
+            <div class="cake-layer layer-2"></div>
+            <div class="cake-layer layer-3"></div>
+            <div class="loading-candles">
+                <div class="loading-candle"></div>
+                <div class="loading-candle"></div>
+                <div class="loading-candle"></div>
+            </div>
+        </div>
+        <h2 class="fredoka text-4xl text-white mt-8 rainbow-text">Menyiapkan Pesta...</h2>
+        <div class="mt-4 text-white text-xl">🎉 Loading... 🎂</div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confetti-container"></div>
+    
+    <!-- Emoji Rain Container -->
+    <div id="emoji-container"></div>
+    
+    <!-- Disco Lights Container -->
+    <div id="disco-container"></div>
+    
+    <!-- Shooting Stars Container -->
+    <div id="shooting-container"></div>
+    
+    <!-- Parallax Background Elements -->
+    <div id="parallax-bg" class="fixed inset-0 pointer-events-none z-0">
+        <!-- Floating Balloons -->
+        <div class="parallax-element parallax-slow text-4xl" style="left: 10%; top: 20%;">🎈</div>
+        <div class="parallax-element parallax-medium text-3xl" style="left: 80%; top: 30%;">🎊</div>
+        <div class="parallax-element parallax-fast text-5xl" style="left: 60%; top: 10%;">⭐</div>
+        <div class="parallax-element parallax-slow text-3xl" style="left: 30%; top: 70%;">🎉</div>
+        <div class="parallax-element parallax-medium text-4xl" style="left: 90%; top: 60%;">🎂</div>
+        <div class="parallax-element parallax-fast text-3xl" style="left: 20%; top: 80%;">🥳</div>
+    </div>
+
+    <!-- Background Music (Demo) -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="musicToggle" class="bg-yellow-400 hover:bg-yellow-500 text-white p-3 rounded-full shadow-lg bounce wiggle">
+            🎵
+        </button>
+        <div class="text-xs text-center mt-1 text-gray-600">Demo Music</div>
+    </div>
+
+    <!-- 1. Opening / Splash Screen -->
+    <section id="splash" class="min-h-screen bg-gradient-to-br from-pink-400 via-purple-500 to-blue-500 flex items-center justify-center relative overflow-hidden">
+        <!-- Animated Balloons -->
+        <div class="balloon bg-red-400" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+        <div class="balloon bg-blue-400" style="left: 20%; top: 30%; animation-delay: 1s;"></div>
+        <div class="balloon bg-yellow-400" style="left: 80%; top: 25%; animation-delay: 2s;"></div>
+        <div class="balloon bg-green-400" style="left: 90%; top: 35%; animation-delay: 3s;"></div>
+        <div class="balloon bg-purple-400" style="left: 15%; top: 60%; animation-delay: 4s;"></div>
+        
+        <!-- Sparkles -->
+        <div class="sparkle" style="left: 25%; top: 15%; animation-delay: 0.5s;"></div>
+        <div class="sparkle" style="left: 75%; top: 20%; animation-delay: 1.5s;"></div>
+        <div class="sparkle" style="left: 50%; top: 10%; animation-delay: 2.5s;"></div>
+        <div class="sparkle" style="left: 30%; top: 70%; animation-delay: 3.5s;"></div>
+        
+        <div class="text-center z-10">
+            <!-- Avatar -->
+            <div class="zoom-in mb-8">
+                <div class="w-32 h-32 mx-auto bg-gradient-to-br from-yellow-300 to-orange-400 rounded-full flex items-center justify-center text-6xl mb-4 shadow-2xl">
+                    🎂
+                </div>
+            </div>
+            
+            <!-- Main Title -->
+            <h1 class="fredoka text-6xl md:text-8xl text-white mb-4 rainbow-text zoom-in">
+                Happy 17st Birthday
+            </h1>
+            <h2 class="fredoka text-4xl md:text-6xl text-yellow-300 mb-8 slide-in-left">
+                Wildan! 🎉
+            </h2>
+            
+            <!-- Open Invitation Button -->
+            <button onclick="scrollToSection('welcome')" class="bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-yellow-500 hover:to-pink-500 text-white font-bold py-4 px-8 rounded-full text-xl shadow-2xl glow-rainbow bounce interactive pulse-hover">
+                🎁 Buka Undangan 🎁
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. Ucapan Pembuka -->
+    <section id="welcome" class="section min-h-screen bg-gradient-to-br from-yellow-300 via-pink-300 to-purple-400 flex items-center justify-center relative">
+        <div class="container mx-auto px-6 text-center">
+            <div class="sparkle" style="left: 20%; top: 20%; animation-delay: 1s;"></div>
+            <div class="sparkle" style="left: 80%; top: 30%; animation-delay: 2s;"></div>
+            <div class="sparkle" style="left: 60%; top: 70%; animation-delay: 3s;"></div>
+            
+            <h2 class="fredoka text-5xl text-white mb-8 slide-in-right">
+                Yuk, Rayakan Kebersamaan! 🎊
+            </h2>
+            
+            <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 max-w-2xl mx-auto">
+                <p class="text-2xl text-white mb-6 typing">
+                    "Setiap tahun adalah hadiah baru dari Tuhan. Mari kita rayakan dengan penuh sukacita!"
+                </p>
+                <div class="text-6xl mb-4">🌟</div>
+                <p class="text-xl text-white">
+                    Bergabunglah dalam perayaan hari spesialku yang penuh kebahagiaan!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Profil Singkat -->
+    <section id="profile" class="section min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-pink-400 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="fredoka text-5xl text-center text-white mb-16 zoom-in">
+                Tentang Si Ulang Tahun 🎂
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Profile Photo -->
+                <div class="text-center slide-in-left">
+                    <div class="w-64 h-64 mx-auto bg-gradient-to-br from-yellow-300 to-orange-400 rounded-full flex items-center justify-center text-8xl mb-6 shadow-2xl interactive">
+                        👨‍🎓
+                    </div>
+                    <h3 class="fredoka text-4xl text-white mb-2">Wildan</h3>
+                    <div class="text-6xl mb-4">
+                        <span class="flip inline-block">2</span>
+                        <span class="flip inline-block" style="animation-delay: 0.2s;">1</span>
+                        <span class="text-white ml-2">Tahun</span>
+                    </div>
+                </div>
+                
+                <!-- Fun Facts -->
+                <div class="slide-in-right">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8">
+                        <h4 class="fredoka text-3xl text-white mb-6">Fun Facts! 🌟</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center text-white text-xl interactive wiggle">
+                                <span class="text-3xl mr-4 rotate-hover">🍕</span>
+                                <span>Makanan Favorit: Pizza & Es Krim</span>
+                            </div>
+                            <div class="flex items-center text-white text-xl interactive shake">
+                                <span class="text-3xl mr-4 pulse-hover">🎮</span>
+                                <span>Hobi: Gaming & Fotografi</span>
+                            </div>
+                            <div class="flex items-center text-white text-xl interactive wiggle">
+                                <span class="text-3xl mr-4 rotate-hover">✈️</span>
+                                <span>Mimpi: Keliling Dunia</span>
+                            </div>
+                            <div class="flex items-center text-white text-xl interactive shake">
+                                <span class="text-3xl mr-4 pulse-hover">🎵</span>
+                                <span>Musik: Pop & Indie</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Detail Acara -->
+    <section id="event-details" class="section min-h-screen bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="fredoka text-5xl text-center text-white mb-16 zoom-in">
+                Detail Pesta 🎪
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Date & Time -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 text-center slide-in-left interactive">
+                    <div class="text-6xl mb-4">⏰</div>
+                    <h3 class="fredoka text-2xl text-white mb-4">Waktu</h3>
+                    <p class="text-white text-lg">
+                        Sabtu, 15 Desember 2024<br>
+                        Pukul 19:00 - 22:00 WIB
+                    </p>
+                </div>
+                
+                <!-- Location -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 text-center zoom-in interactive">
+                    <div class="text-6xl mb-4">📍</div>
+                    <h3 class="fredoka text-2xl text-white mb-4">Lokasi</h3>
+                    <p class="text-white text-lg">
+                        Resto Garden Party<br>
+                        Jl. Kebahagiaan No. 21<br>
+                        Jakarta Selatan
+                    </p>
+                    <button class="mt-4 bg-yellow-400 hover:bg-yellow-500 text-gray-800 px-4 py-2 rounded-full interactive">
+                        📍 Lihat Maps
+                    </button>
+                </div>
+                
+                <!-- Dress Code -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 text-center slide-in-right interactive">
+                    <div class="text-6xl mb-4">👕</div>
+                    <h3 class="fredoka text-2xl text-white mb-4">Dress Code</h3>
+                    <p class="text-white text-lg mb-4">Casual & Colorful</p>
+                    <div class="flex justify-center space-x-2">
+                        <div class="w-8 h-8 bg-red-400 rounded-full interactive"></div>
+                        <div class="w-8 h-8 bg-blue-400 rounded-full interactive"></div>
+                        <div class="w-8 h-8 bg-yellow-400 rounded-full interactive"></div>
+                        <div class="w-8 h-8 bg-green-400 rounded-full interactive"></div>
+                        <div class="w-8 h-8 bg-purple-400 rounded-full interactive"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Countdown Timer -->
+    <section id="countdown" class="section min-h-screen bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 flex items-center justify-center">
+        <div class="text-center">
+            <h2 class="fredoka text-5xl text-white mb-12 zoom-in">
+                Countdown ke Pesta! ⏳
+            </h2>
+            
+            <div class="grid grid-cols-4 gap-8 mb-12">
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 interactive">
+                    <div id="days" class="text-4xl font-bold text-white flip">00</div>
+                    <div class="text-white">Hari</div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 interactive">
+                    <div id="hours" class="text-4xl font-bold text-white flip">00</div>
+                    <div class="text-white">Jam</div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 interactive">
+                    <div id="minutes" class="text-4xl font-bold text-white flip">00</div>
+                    <div class="text-white">Menit</div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 interactive">
+                    <div id="seconds" class="text-4xl font-bold text-white flip">00</div>
+                    <div class="text-white">Detik</div>
+                </div>
+            </div>
+            
+            <p class="text-2xl text-white">
+                Waktunya semakin dekat! 🎉
+            </p>
+        </div>
+    </section>
+
+    <!-- 6. Galeri Foto -->
+    <section id="gallery" class="section min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-400 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="fredoka text-5xl text-center text-white mb-16 zoom-in">
+                Galeri Kenangan 📸
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 text-center interactive">
+                    <div class="text-8xl mb-4">👶</div>
+                    <h3 class="text-white text-xl mb-2">Masa Kecil</h3>
+                    <p class="text-white/80">Lucu dan menggemaskan</p>
+                </div>
+                
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 text-center interactive">
+                    <div class="text-8xl mb-4">🎓</div>
+                    <h3 class="text-white text-xl mb-2">Masa Remaja</h3>
+                    <p class="text-white/80">Penuh petualangan</p>
+                </div>
+                
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 text-center interactive">
+                    <div class="text-8xl mb-4">🌟</div>
+                    <h3 class="text-white text-xl mb-2">Sekarang</h3>
+                    <p class="text-white/80">Dewasa dan bersinar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Ucapan & Doa Tamu -->
+    <section id="wishes" class="section min-h-screen bg-gradient-to-br from-teal-400 via-blue-500 to-purple-600 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="fredoka text-5xl text-center text-white mb-16 zoom-in">
+                Ucapan & Doa 💌
+            </h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <!-- Form Ucapan -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 mb-8">
+                    <h3 class="fredoka text-2xl text-white mb-6">Tulis Ucapanmu!</h3>
+                    <form id="wishForm" class="space-y-4">
+                        <input type="text" id="wishName" placeholder="Nama kamu" class="w-full p-3 rounded-xl border-0 bg-white/30 text-white placeholder-white/70">
+                        <textarea id="wishMessage" placeholder="Ucapan & doa untuk Wildan..." rows="4" class="w-full p-3 rounded-xl border-0 bg-white/30 text-white placeholder-white/70"></textarea>
+                        <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-bold py-3 rounded-xl glow interactive">
+                            💌 Kirim Ucapan
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Display Wishes -->
+                <div id="wishesContainer" class="space-y-4">
+                    <!-- Sample wishes -->
+                    <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 slide-in-left">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-3xl">🎉</div>
+                            <div>
+                                <h4 class="text-white font-bold">Sarah</h4>
+                                <p class="text-white/90">Selamat ulang tahun Wildan! Semoga selalu bahagia dan sukses! 🎂</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-6 slide-in-right">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-3xl">❤️</div>
+                            <div>
+                                <h4 class="text-white font-bold">Budi</h4>
+                                <p class="text-white/90">Happy birthday bro! Panjang umur dan sehat selalu ya! 🎈</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Interaktif & Game -->
+    <section id="games" class="section min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="fredoka text-5xl text-center text-white mb-16 zoom-in">
+                Mini Games 🎮
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Pop the Balloon Game -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 text-center">
+                    <h3 class="fredoka text-3xl text-white mb-6">Pop the Balloons! 🎈</h3>
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div class="balloon-pop bg-red-400 w-16 h-20 rounded-full mx-auto cursor-pointer" onclick="popBalloon(this)"></div>
+                        <div class="balloon-pop bg-blue-400 w-16 h-20 rounded-full mx-auto cursor-pointer" onclick="popBalloon(this)"></div>
+                        <div class="balloon-pop bg-yellow-400 w-16 h-20 rounded-full mx-auto cursor-pointer" onclick="popBalloon(this)"></div>
+                        <div class="balloon-pop bg-green-400 w-16 h-20 rounded-full mx-auto cursor-pointer" onclick="popBalloon(this)"></div>
+                        <div class="balloon-pop bg-purple-400 w-16 h-20 rounded-full mx-auto cursor-pointer" onclick="popBalloon(this)"></div>
+                        <div class="balloon-pop bg-pink-400 w-16 h-20 rounded-full mx-auto cursor-pointer" onclick="popBalloon(this)"></div>
+                    </div>
+                    <p class="text-white">Klik balon untuk memecahkannya!</p>
+                    <div id="balloonScore" class="text-2xl text-white mt-4">Skor: 0</div>
+                </div>
+                
+                <!-- Birthday Cake -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 text-center">
+                    <h3 class="fredoka text-3xl text-white mb-6">Tiup Lilin! 🕯️</h3>
+                    <div class="relative">
+                        <div class="text-8xl mb-4">🎂</div>
+                        <div class="flex justify-center space-x-2 mb-6">
+                            <div class="candle-flame cursor-pointer" onclick="blowCandle(this)"></div>
+                            <div class="candle-flame cursor-pointer" onclick="blowCandle(this)"></div>
+                            <div class="candle-flame cursor-pointer" onclick="blowCandle(this)"></div>
+                        </div>
+                    </div>
+                    <p class="text-white">Klik lilin untuk meniupnya!</p>
+                    <div id="candleCount" class="text-2xl text-white mt-4">Lilin: 3</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. RSVP -->
+    <section id="rsvp" class="section min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 flex items-center justify-center">
+        <div class="container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="fredoka text-5xl text-white mb-12 zoom-in">
+                    Konfirmasi Kehadiran 📝
+                </h2>
+                
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8">
+                    <form id="rsvpForm" class="space-y-6">
+                        <input type="text" id="rsvpName" placeholder="Nama Lengkap" class="w-full p-4 rounded-xl border-0 bg-white/30 text-white placeholder-white/70 text-lg">
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <button type="button" onclick="selectRSVP('hadir')" id="hadirBtn" class="p-4 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold interactive">
+                                ✅ Hadir
+                            </button>
+                            <button type="button" onclick="selectRSVP('tidak')" id="tidakBtn" class="p-4 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold interactive">
+                                ❌ Tidak Hadir
+                            </button>
+                        </div>
+                        
+                        <textarea id="rsvpMessage" placeholder="Pesan tambahan (opsional)" rows="3" class="w-full p-4 rounded-xl border-0 bg-white/30 text-white placeholder-white/70"></textarea>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-bold py-4 rounded-xl text-xl glow-rainbow interactive pulse-hover">
+                            📱 Kirim via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Gift Section -->
+    <section id="gifts" class="section min-h-screen bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-600 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="fredoka text-5xl text-center text-white mb-16 zoom-in">
+                Hadiah & Kado 🎁
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Digital Gift -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 text-center">
+                    <div class="gift-box text-8xl mb-6 cursor-pointer" onclick="openGift(this)">
+                        🎁
+                        <div class="gift-lid"></div>
+                    </div>
+                    <h3 class="fredoka text-2xl text-white mb-4">Kado Digital</h3>
+                    <p class="text-white mb-6">Kirim kado melalui transfer digital</p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white/30 rounded-xl p-4">
+                            <div class="text-2xl mb-2">💳</div>
+                            <p class="text-white font-bold">BCA: 1234567890</p>
+                            <p class="text-white/80">a.n. Wildan</p>
+                        </div>
+                        
+                        <div class="bg-white/30 rounded-xl p-4">
+                            <div class="text-2xl mb-2">📱</div>
+                            <p class="text-white font-bold">GoPay: 082142319435</p>
+                            <p class="text-white/80">Wildan</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wishlist -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8">
+                    <h3 class="fredoka text-2xl text-white mb-6 text-center">Wishlist 📋</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white/30 rounded-xl p-4 flex items-center space-x-4 interactive">
+                            <div class="text-3xl">📚</div>
+                            <div>
+                                <h4 class="text-white font-bold">Buku Favorit</h4>
+                                <p class="text-white/80">Novel atau buku motivasi</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/30 rounded-xl p-4 flex items-center space-x-4 interactive">
+                            <div class="text-3xl">🎧</div>
+                            <div>
+                                <h4 class="text-white font-bold">Headphone</h4>
+                                <p class="text-white/80">Untuk mendengarkan musik</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/30 rounded-xl p-4 flex items-center space-x-4 interactive">
+                            <div class="text-3xl">👕</div>
+                            <div>
+                                <h4 class="text-white font-bold">Kaos Keren</h4>
+                                <p class="text-white/80">Size M, warna bebas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Closing -->
+    <section id="closing" class="section min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-700 flex items-center justify-center relative">
+        <!-- Fireworks -->
+        <div class="sparkle" style="left: 10%; top: 10%; animation-delay: 0s;"></div>
+        <div class="sparkle" style="left: 90%; top: 15%; animation-delay: 0.5s;"></div>
+        <div class="sparkle" style="left: 20%; top: 80%; animation-delay: 1s;"></div>
+        <div class="sparkle" style="left: 80%; top: 85%; animation-delay: 1.5s;"></div>
+        <div class="sparkle" style="left: 50%; top: 5%; animation-delay: 2s;"></div>
+        
+        <div class="text-center z-10">
+            <h2 class="fredoka text-6xl text-white mb-8 zoom-in">
+                Terima Kasih! 🙏
+            </h2>
+            
+            <!-- Virtual Birthday Cake -->
+            <div class="mb-8">
+                <div class="text-9xl mb-4 cursor-pointer" onclick="blowAllCandles()" id="birthdayCake">🎂</div>
+                <p class="text-white text-xl">Klik kue untuk meniup lilin!</p>
+            </div>
+            
+            <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 max-w-2xl mx-auto mb-8">
+                <p class="text-2xl text-white mb-6">
+                    Kehadiranmu adalah hadiah terbaik untukku! 💝
+                </p>
+                <p class="text-lg text-white/90">
+                    Mari kita ciptakan kenangan indah bersama di hari spesial ini. 
+                    Sampai jumpa di pesta! 🎉
+                </p>
+            </div>
+            
+            <!-- Share Buttons -->
+            <div class="flex justify-center space-x-4">
+                <button onclick="shareToWhatsApp()" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold bounce interactive glow-pulse wiggle">
+                    📱 Share ke WhatsApp
+                </button>
+                <button onclick="shareToInstagram()" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white px-6 py-3 rounded-full font-bold bounce interactive glow-rainbow shake">
+                    📸 Share ke Instagram
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize confetti
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(confetti);
+            }
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date('2024-12-15T19:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<h2 class="fredoka text-5xl text-white">🎉 Pesta Dimulai! 🎉</h2>';
+                createFireworks();
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        // Balloon Pop Game
+        let balloonScore = 0;
+        function popBalloon(balloon) {
+            balloon.style.transform = 'scale(0)';
+            balloon.style.opacity = '0';
+            balloonScore++;
+            document.getElementById('balloonScore').textContent = `Skor: ${balloonScore}`;
+            
+            // Create confetti effect
+            createMiniConfetti(balloon);
+            
+            setTimeout(() => {
+                balloon.style.transform = 'scale(1)';
+                balloon.style.opacity = '1';
+            }, 2000);
+        }
+
+        function createMiniConfetti(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.position = 'fixed';
+                confetti.style.left = rect.left + 'px';
+                confetti.style.top = rect.top + 'px';
+                confetti.style.zIndex = '9999';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        // Candle Blowing
+        let candleCount = 3;
+        function blowCandle(candle) {
+            candle.style.opacity = '0';
+            candleCount--;
+            document.getElementById('candleCount').textContent = `Lilin: ${candleCount}`;
+            
+            if (candleCount === 0) {
+                setTimeout(() => {
+                    alert('🎉 Selamat! Semua lilin sudah ditiup! 🎉');
+                    // Reset candles
+                    document.querySelectorAll('.candle-flame').forEach(c => c.style.opacity = '1');
+                    candleCount = 3;
+                    document.getElementById('candleCount').textContent = `Lilin: ${candleCount}`;
+                }, 500);
+            }
+        }
+
+        // Wishes Form
+        document.getElementById('wishForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('wishName').value;
+            const message = document.getElementById('wishMessage').value;
+            
+            if (name && message) {
+                const wishContainer = document.getElementById('wishesContainer');
+                const newWish = document.createElement('div');
+                newWish.className = 'bg-white/20 backdrop-blur-sm rounded-3xl p-6 slide-in-left';
+                newWish.innerHTML = `
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl">🎉</div>
+                        <div>
+                            <h4 class="text-white font-bold">${name}</h4>
+                            <p class="text-white/90">${message}</p>
+                        </div>
+                    </div>
+                `;
+                wishContainer.appendChild(newWish);
+                
+                // Reset form
+                document.getElementById('wishName').value = '';
+                document.getElementById('wishMessage').value = '';
+                
+                // Show success message
+                alert('💌 Ucapan berhasil dikirim! Terima kasih!');
+            }
+        });
+
+        // RSVP Form
+        let rsvpStatus = '';
+        function selectRSVP(status) {
+            rsvpStatus = status;
+            document.getElementById('hadirBtn').classList.remove('ring-4', 'ring-white');
+            document.getElementById('tidakBtn').classList.remove('ring-4', 'ring-white');
+            
+            if (status === 'hadir') {
+                document.getElementById('hadirBtn').classList.add('ring-4', 'ring-white');
+            } else {
+                document.getElementById('tidakBtn').classList.add('ring-4', 'ring-white');
+            }
+        }
+
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('rsvpName').value;
+            const message = document.getElementById('rsvpMessage').value;
+            
+            if (name && rsvpStatus) {
+                const whatsappMessage = `Halo! Saya ${name} ingin konfirmasi kehadiran untuk pesta ulang tahun Wildan.\n\nStatus: ${rsvpStatus === 'hadir' ? 'Hadir' : 'Tidak Hadir'}\n\nPesan: ${message || 'Tidak ada pesan tambahan'}`;
+                const whatsappUrl = `https://wa.me/6282142319435?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, '_blank');
+            } else {
+                alert('Mohon lengkapi nama dan pilih status kehadiran!');
+            }
+        });
+
+        // Gift Box Animation
+        function openGift(giftBox) {
+            giftBox.classList.toggle('opened');
+            if (giftBox.classList.contains('opened')) {
+                createMiniConfetti(giftBox);
+                setTimeout(() => {
+                    alert('🎁 Terima kasih atas hadiah yang akan diberikan! 💝');
+                }, 500);
+            }
+        }
+
+        // Blow All Candles
+        function blowAllCandles() {
+            const cake = document.getElementById('birthdayCake');
+            cake.textContent = '🎂💨';
+            createFireworks();
+            
+            setTimeout(() => {
+                alert('🎉 Happy Birthday Wildan! Semoga semua impianmu terwujud! 🎂');
+                cake.textContent = '🎂';
+            }, 2000);
+        }
+
+        // Create Fireworks Effect
+        function createFireworks() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.zIndex = '9999';
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 2000);
+                }, i * 100);
+            }
+        }
+
+        // Share Functions
+        function shareToWhatsApp() {
+            const message = "🎉 Yuk datang ke pesta ulang tahun Wildan yang ke-17! Akan seru banget nih! 🎂";
+            const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToInstagram() {
+            alert('📸 Silakan screenshot undangan ini dan share ke Instagram Story kamu! Jangan lupa tag @wildan ya! 🎉');
+        }
+
+        // Music Toggle (Demo)
+        let musicPlaying = false;
+        document.getElementById('musicToggle').addEventListener('click', function() {
+            musicPlaying = !musicPlaying;
+            this.textContent = musicPlaying ? '🔇' : '🎵';
+            this.title = musicPlaying ? 'Matikan Musik' : 'Putar Musik';
+            
+            if (musicPlaying) {
+                alert('🎵 Musik latar belakang diputar! (Demo - musik tidak benar-benar diputar karena keterbatasan teknis)');
+            }
+        });
+
+        // Hide loading screen automatically
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 1000);
+        }
+
+        // Create Emoji Rain
+        function createEmojiRain() {
+            const container = document.getElementById('emoji-container');
+            const emojis = ['🎉', '🎂', '🥳', '❤️', '🎈', '⭐', '🎊', '💝'];
+            
+            for (let i = 0; i < 15; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'emoji-rain';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + '%';
+                emoji.style.animationDelay = Math.random() * 8 + 's';
+                emoji.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(emoji);
+            }
+        }
+
+        // Create Disco Lights
+        function createDiscoLights() {
+            const container = document.getElementById('disco-container');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
+            
+            for (let i = 0; i < 20; i++) {
+                const light = document.createElement('div');
+                light.className = 'disco-light';
+                light.style.left = Math.random() * 100 + '%';
+                light.style.top = Math.random() * 100 + '%';
+                light.style.color = colors[Math.floor(Math.random() * colors.length)];
+                light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                light.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(light);
+            }
+        }
+
+        // Create Shooting Stars
+        function createShootingStars() {
+            const container = document.getElementById('shooting-container');
+            
+            setInterval(() => {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                star.style.left = Math.random() * 50 + '%';
+                star.style.top = Math.random() * 50 + '%';
+                container.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, 3000);
+            }, 5000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createConfetti();
+            createEmojiRain();
+            createDiscoLights();
+            createShootingStars();
+            updateCountdown();
+            
+            // Auto hide loading screen after 2 seconds
+            setTimeout(hideLoadingScreen, 2000);
+            
+            // Add sparkles periodically
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.zIndex = '100';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }, 3000);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af3721829f5f54',t:'MTc1NzE3NDgwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

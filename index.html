@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adibdev86 - SmartGuys Teacher & Music Lovers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+  <!-- Favicons -->
+  <link href="filefoto/ChatGPT_Image_24_Agu_2025__08.01.00-removebg-preview.png" rel="icon">
+    <style>
+
+
+.burger-menu { display: none; }
+
+        .banner-image {
+            background: linear-gradient(45deg, #e3f2fd, #f3e5f5, #fff3e0, #e8f5e8, #fce4ec, #f1f8e9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 12px;
+        }
+        .article-thumbnail {
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            width: 100px; /* Atur lebar gambar */
+            height: auto; /* Sesuaikan tinggi secara otomatis */
+        }
+        .hover-blue:hover {
+            color: #0055FF;
+        }
+        .soundcloud-player {
+            background: linear-gradient(135deg, #ff5500, #ff7700);
+            border-radius: 8px;
+            padding: 16px;
+            color: white;
+            text-align: center;
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: #374151;
+            text-decoration: none;
+            font-size: 14px;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.2s ease;
+        }
+        .dropdown-menu a:hover {
+            background: #f9fafb;
+            color: #2563eb;
+            padding-left: 20px;
+        }
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .dropdown-menu i {
+            margin-right: 8px;
+            width: 16px;
+        }
+        .sidebar-gradient-outline {
+            position: relative;
+            overflow: hidden;
+        }
+        .sidebar-gradient-outline::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            z-index: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #3b82f6, #a21caf);
+            pointer-events: none;
+        }
+        .sidebar-gradient-outline > * {
+            position: relative;
+            z-index: 1;
+        }
+        .article-gradient-outline {
+            position: relative;
+            overflow: visible;
+        }
+        .article-gradient-outline::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, #3b82f6, #a21caf);
+            -webkit-mask:
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+        .article-gradient-outline > * {
+            position: relative;
+            z-index: 1;
+        }
+        /*ini dari cahtgpt
+/* Responsif khusus untuk HP */
+@media (max-width: 768px) {
+    /* Atur tata letak konten utama dan sidebar */
+    .flex {
+        flex-direction: column; /* Ubah layout menjadi kolom */
+    }
+
+    main {
+        width: 100%; /* Konten utama memenuhi lebar layar */
+        order: 1; /* Konten utama muncul lebih dulu */
+        padding: 0; /* Hilangkan padding agar full ke kanan */
+        margin: 0; /* Hilangkan margin agar full ke kanan */
+    }
+
+    aside {
+        width: 100%; /* Sidebar memenuhi lebar layar */
+        margin-top: 16px; /* Tambahkan jarak di atas sidebar */
+        order: 2; /* Sidebar muncul setelah konten utama */
+        padding: 0; /* Hilangkan padding agar full ke kanan */
+        margin: 0; /* Hilangkan margin agar full ke kanan */
+    }
+
+    article {
+        width: 100%; /* Artikel memenuhi lebar layar */
+        margin: 0; /* Hilangkan margin agar full ke kanan */
+        padding: 0; /* Hilangkan padding agar full ke kanan */
+    }
+
+    .sidebar-card-gradient-outline {
+        width: 100%; /* Sidebar card memenuhi lebar layar */
+        margin: 0; /* Hilangkan margin agar full ke kanan */
+        padding: 0; /* Hilangkan padding agar full ke kanan */
+    }
+
+    .rounded-lg {
+        border-radius: 0; /* Hilangkan radius agar kotakan memenuhi layar */
+    }
+}
+
+
+        /*sampai ini
+        /* Tambahan style untuk sidebar-card-gradient-outline */
+.sidebar-card-gradient-outline {
+    position: relative;
+    overflow: visible;
+}
+.sidebar-card-gradient-outline::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 16px;
+    padding: 2px; /* INI PENYEBABNYA */
+    background: linear-gradient(135deg, #3b82f6, #a21caf);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.sidebar-card-gradient-outline > * {
+    position: relative;
+    z-index: 1;
+}
+/* Responsif Header */
+@media (max-width: 768px) {
+    /* Header */
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+        position: relative; /* Penting untuk posisi absolute logo */
+    }
+
+    /* Logo + Tulisan di kiri atas */
+    header .flex-shrink-0 {
+        position: absolute;
+        top: 0rem;
+        left: 50%;
+        transform: translateX(-50%) scale(0.85); /* Pindah ke tengah & perkecil sedikit */
+        transform-origin: top center;
+        z-index: 10;
+    }
+
+    /* Burger menu di pojok kanan atas */
+    .burger-menu {
+        position: fixed; /* Ubah ke fixed agar tetap terlihat saat scroll */
+        top: 1rem;
+        right: 1rem;
+        display: block;
+        cursor: pointer;
+        z-index: 100; /* Pastikan burger menu berada di atas elemen lain */
+    }
+
+    
+    /* Navigasi burger menu */
+    nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 75%; /* Sesuaikan lebar menu */
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7); /* Transparansi */
+        backdrop-filter: blur(10px); /* Efek blur */
+        z-index: 200;
+        padding: 16px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto; /* Tambahkan scroll jika konten terlalu panjang */
+    }
+
+
+    
+    nav.active {
+        display: block;
+        transform: translateX(0);
+    }
+
+    nav a {
+        display: block;
+        color: white;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 16px; /* Sesuaikan ukuran font */
+    }
+
+    /* Gambar slider */
+    header .flex-1.max-w-3xl.ml-9 {
+        display: flex;
+        flex-direction: row; /* Susun horizontal */
+        flex-wrap: nowrap;   /* Jangan pindah baris */
+        overflow-x: auto;
+        gap: 8px;
+        white-space: nowrap;
+        margin-top: 8rem; /* Tambahkan jarak ekstra agar logo tidak menutupi */
+    }
+
+    /* Sembunyikan gambar ke-7 dan seterusnya */
+    header .flex-1.max-w-3xl.ml-9 img:nth-child(n+7) {
+        display: none;
+    }
+}
+
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Tambahkan jarak di atas header -->
+    <div class="h-4"></div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-2 py-">
+            <div class="flex items-start justify-between">
+                <!-- Logo dan Tagline -->
+                <div class="flex-shrink-0 flex items-center gap-4">
+                    <!-- Logo -->
+                    <div class="w-20 h-20 rounded-full shadow-lg overflow-hidden">
+                        <img src="filefoto/ChatGPT_Image_24_Agu_2025__08.01.00-removebg-preview.png" alt="Logo wildandev" class="w-full h-full object-cover max-w-full max-h-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg" style="display: none;">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <!-- Text -->
+                    <div>
+                        <h1 class="text-4xl font-bold">
+                            <span class="text-blue-600">HambaAllah</span><span class="bg-gradient-to-r from-green-400 to-blue-400 to-red-400 bg-clip-text text-transparent">86</span>
+                        </h1>
+                        <p class="text-sm mt-1">
+                            <span class="text-blue-600 font-semibold">Al Yasini</span>
+                            <span class="text-black"> Santri & </span>
+                            <span class="text-orange-500 font-semibold">Pray Lovers</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Banner Gambar -->
+                <div class="flex gap-1 flex-1 max-w-3xl ml-9">
+                    <img src="filefoto/458292061_3687055098213405_5763568578235486827_n.jpg" alt="Banner Baru" class="w-40 h-20 rounded border object-cover max-w-full max-h-20" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.background='#f5f5f5'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center';">
+                    <img src="filefoto/455242865_3663065870612328_8694157478160237277_n.jpg" alt="Banner 1" class="w-40 h-20 rounded border object-cover max-w-full max-h-20" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.background='#f5f5f5'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center';">
+                    <img src="filefoto/1000001855.jpg" alt="Banner 2" class="w-40 h-20 rounded border object-cover max-w-full max-h-20" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.background='#f5f5f5';">
+                    <img src="filefoto/Gambar WhatsApp 2024-10-10 pukul 07.34.45_ad34a4d81.jpg" alt="Banner 3" class="w-40 h-20 rounded border object-cover max-w-full max-h-20" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.background='#f5f5f5';">
+                    <img src="filefoto/355262935_3388311311421120_1437478467225696787_nm.jpg" alt="Banner 4" class="w-40 h-20 rounded border object-cover max-w-full max-h-20" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.background='#f5f5f5';">
+                    <img src="filefoto/1000004327.jpg" alt="Banner 5" class="w-40 h-20 rounded border object-cover max-w-full max-h-20" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.background='#f5f5f5';">
+                    <img src="filefoto/20250624_151330.jpg" alt="Banner 6" class="w-40 h-20 rounded border object-cover max-w-full max-h-20" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.background='#f5f5f5';">
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Garis gradasi khusus untuk HP -->
+    <div class="navbar-gradient hidden"></div>
+
+    <!-- Navigasi Utama -->
+    <nav class="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 shadow-lg mt-9">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="logohome.html" class="text-white px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+                        <i class="fas fa-home text-lg"></i>
+                    </a>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                    <a href="index.html" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300">HOME</a>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                    <a href="hotnews.html" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300">HOT NEWS</a>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                      <a href="galeri.html" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300">GALERI</a>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                    
+                    
+                    <!-- Dropdown Kontak -->
+                    <div class="dropdown">
+                        <a href="#" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300 flex items-center">
+                            KONTAK <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fab fa-linkedin text-xl"></i>MY PROFIL</a>
+                            <a href="https://wa.me/6282142319435?text=Halo,%20aku%20sedang%20membutuhkan%20.........."><i class="fab fa-whatsapp"></i>WHATSAPP</a>
+                            <a href="https://www.facebook.com/yourprofile"><i class="fab fa-facebook-f text-xl"></i>FACEBOOK</a>
+                            <a href="https://www.instagram.com/m_wldn_adb_p/"><i class="fab fa-instagram text-xl"></i>INSTAGRAM</a>
+                              <a href="mysite/webportofoliomodern.html"><i class="fab fa-id-card text-xl"></i>MY PROFILE</a>
+                        </div>
+                    </div>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                    
+                    <!-- Dropdown E-Library -->
+                    <div class="dropdown">
+                        <a href="#" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300 flex items-center">
+                            E-LIBRARY <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fas fa-book"></i>Buku Digital</a>
+                            <a href="#"><i class="fas fa-file-pdf"></i>Modul PDF</a>
+                            <a href="#"><i class="fas fa-video"></i>Video Tutorial</a>
+                            <a href="#"><i class="fas fa-headphones"></i>Audio Book</a>
+                            <a href="#"><i class="fas fa-download"></i>Unduhan</a>
+                        </div>
+                    </div>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                    
+                    <!-- Dropdown Servis Laptop -->
+                    <div class="dropdown">
+                        <a href="#" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300 flex items-center">
+                            MY SITE <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="mysite/wildshope.html"><i class="fas fa-shop"></i>SHOP</a>
+                            <a href="#"><i class="fas fa-download"></i>TEMPLATE</a>
+                            <a href="mysite/web undangan pernikahan.html"><i class="fas fa-envelope"></i>WEB UNDANGAN</a>
+                            <a href="mysite/websekolah.html"><i class="fas fa-school"></i>SCHOOL</a>
+                            <a href="mysite/websenimanbesi.html"><i class="fas fa-shop"></i>LAS SITE</a>
+                        </div>
+                    </div>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                    
+                    <!-- Dropdown Ujian Online -->
+                    <div class="dropdown">
+                        <a href="#" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300 flex items-center">
+                            ONLINE EXAM <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fas fa-clipboard-list"></i>Daftar Ujian</a>
+                            <a href="#"><i class="fas fa-play-circle"></i>Mulai Ujian</a>
+                            <a href="#"><i class="fas fa-chart-bar"></i>Hasil Ujian</a>
+                            <a href="#"><i class="fas fa-history"></i>Riwayat</a>
+                            <a href="#"><i class="fas fa-question-circle"></i>Bantuan</a>
+                        </div>
+                    </div>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                    
+                    <!-- Dropdown Jurnal -->
+                    <div class="dropdown">
+                        <a href="#" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300 flex items-center">
+                            ALL YA <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fas fa-newspaper"></i>Jurnal Terbaru</a>
+                            <a href="https://drive.google.com/drive/folders/1L6D8bVpzwyih3Jg_kbU88X1iD5sgaGgi?usp=sharing"><i class="fas fa-archive"></i>SHARE FILE</a>
+                            <a href="#"><i class="fas fa-edit"></i>Submit Artikel</a>
+                            <a href="#"><i class="fas fa-users"></i>Pelatihan</a>
+                            <a href="#"><i class="fas fa-info-circle"></i>Donasi</a>
+                        </div>
+                    </div>
+                    <div class="w-px h-6 bg-white bg-opacity-30"></div>
+                    
+                    <a href="login.html" class="text-white font-semibold px-4 py-2 hover:bg-white hover:bg-opacity-20 transition-all duration-300">LOGIN</a>
+                </div>
+                <div class="flex items-center">
+                    <!-- Tambahkan elemen input pencarian -->
+<div class="flex items-center relative">
+    <input id="searchInput" type="text" placeholder="Cari..." class="hidden bg-white text-black px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300">
+    <button class="bg-white bg-opacity-30 border border-white border-opacity-40 hover:bg-opacity-50 text-white px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md ml-2">
+        <i class="fas fa-search text-lg"></i>
+    </button>
+</div>
+                </div>
+            </div>
+        </div>
+        <!-- Decorative bottom border -->
+        <div class="h-1 navbar-gradient"></div>
+    </nav>
+<!-- Tambahkan di dalam nav -->
+<!-- Burger Menu -->
+<div class="burger-menu">
+    <i class="fas fa-bars text-2xl text-black-800"></i>
+</div>
+
+   <!-- Konten Utama -->
+<div class="max-w-8xl mx-auto px-4 py-6">
+    <div class="flex flex-col md:flex-row gap-6">
+        <!-- Konten Utama -->
+        <main class="flex-1 w-full md:w-3/4">
+  <!-- Artikel -->
+                <div class="space-y-3">
+                    <!-- Artikel 1 -->
+                    <article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/WhatsApp Image 2025-08-25 at 06.17.51.jpeg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">Memperingati Maulid Nabi Muhammad SAW: Sejarah dan ...
+</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>08:04</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Memperingati Maulid Nabi Muhammad SAW adalah salah satu tradisi penting yang dilaksanakan oleh umat Islam di seluruh dunia. Selain sebagai momen untuk memperingati sejarah kelahiran Rasulullah, perayaan ini juga menjadi kesempatan untuk meneladani akhlak serta perjuangan beliau dalam menyebarkan risalah Islam
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 2 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/images.jpeg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">Tips Belajar Coding Untuk Pemula
+</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>07:45</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+         Ilmu dasar coding bisa kamu pelajari secara otodidak dengan membaca buku untuk belajar coding atau dari platform video di internet. Dari situ, kamu dapat mempelajari dasar-dasar coding serta mendapatkan tutorial coding untuk pemula yang bisa kamu implementasikan sebagai langkah awal belajar coding.
+
+‍
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 3 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/unduhan.jpeg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">
+DZikir kebangsaan di Pondok Pesantren Terpadu Al-Yasini 
+</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>15:30</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+                Kegiatan zikir kebangsaan tidak hanya berisi lantunan doa dan dzikir, tetapi juga menjadi wadah menanamkan nilai-nilai perjuangan, persatuan, dan semangat jihad dalam arti luas. Jihad di sini dimaknai sebagai perjuangan membangun diri, menjaga kesehatan, menuntut ilmu, serta berkontribusi bagi kemajuan bangsa.
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 4 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/Cuplikan layar 2025-09-08 120956.png" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">Bekerja Kelompok dengan Benar: Kunci Kesuksesan dan Efektivitas</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>12:15</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Bekerja kelompok adalah salah satu metode belajar dan bekerja yang sering diterapkan di sekolah, kampus, maupun tempat kerja. Tujuan utamanya adalah menyatukan ide, kemampuan, dan pengalaman dari setiap anggota untuk mencapai hasil yang lebih baik dibandingkan bekerja sendiri.
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 5 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/1000089999.jpg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">kenangan di pondok dalwah dengan nuansa nostalgia dan penuh makna</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>09:20</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+                Kenangan di pondok pesantren penuh makna, dari bangun subuh, belajar bersama, hingga kebersamaan sederhana yang membentuk persaudaraan, kemandirian, kesabaran, serta menjadi bekal berharga untuk dakwah dan kehidupan di masa depan.
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 6 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/5y0qtsdmkpxgnvz.jpeg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">Kejari Pasuruan Tetapkan 5 Tersangka Korupsi Bantuan Operasional PKBM</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>16:45</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+                Kejaksaan Negeri (Kejari) Kabupaten Pasuruan menetapkan tiga tersangka baru dalam pusaran korupsi ini, sehingga total ada lima tersangka yang harus mempertanggung jawabkan perbuatan kriminalnya di pengadilan.
+
+Ketiga tersangka baru tersebut telah ditetapkan pada Senin (14/4/2025) sore kemarin. Mereka diantaranya Kepala PKBM Budi Luhur Kecamatan Gondangwetan, Adi Purwanto. Kemudian M Najib selaku Kepala PKBM Sabilul Falah Kecamatan Bangil serta Nurkamto, pegawai Dinas Pendidikan dan Kebudayaan Kabupaten Pasuruan.
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 7 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/download (1).jpeg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">Skill yang Pasti Dibutuhkan di Masa Depan: Bekal agar Tetap Relevan</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>11:30</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+              Di masa depan, literasi digital, berpikir kritis, dan komunikasi efektif akan sangat dibutuhkan. Penguasaan teknologi seperti data analysis dan keamanan siber juga menjadi nilai tambah besar. Dengan soft skill dan adaptasi cepat, kita bisa tetap relevan menghadapi perubahan zaman.
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 8 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/download (2).jpeg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">“Overthinking vs Produktif: Trik Simpel Biar Pikiran Nggak Kacau”</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>10:15</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+               Overthinking sering bikin anak muda stuck, padahal banyak hal bisa diselesaikan dengan langkah kecil yang konsisten. Kuncinya ada di fokus: tulis to-do list, kerjain satu hal dulu, dan jangan lupa kasih jeda buat diri sendiri. Dengan trik simpel ini, pikiran jadi lebih lega dan produktivitas bisa jalan tanpa drama.
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 9 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/download (3).jpeg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">“Pekerjaan yang Bakal Laku Keras 10 Tahun ke Depan—Siapkah Kamu?”</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>14:00</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+               Dalam 10 tahun ke depan, dunia kerja akan banyak berubah karena teknologi, otomatisasi, dan gaya hidup baru. Profesi seperti data analyst, AI specialist, digital marketing, tenaga kesehatan, serta creative content creator diprediksi semakin dicari. Anak muda yang mau belajar skill digital dan terus beradaptasi pasti lebih siap bersaing menghadapi masa depan.
+            </p>
+        </div>
+    </div>
+</article>
+
+<!-- Artikel 10 -->
+<article class="rounded-lg shadow-sm p-6 relative article-gradient-outline bg-white">
+    <div class="flex gap-4">
+        <div class="article-thumbnail flex-shrink-0">
+            <img src="filefoto/images (1).jpeg" alt="Thumbnail Artikel" class="w-full h-full object-contain rounded">
+        </div>
+        <div class="flex-1">
+            <h2 class="text-xl font-bold text-black mb-2 hover:text-blue-600 cursor-pointer">“Mental Health Check: 7 Cara Jaga Kewarasan di Tengah Drama Hidup”</h2>
+            <div class="text-gray-500 text-sm mb-2">
+                <span>wildandev</span> • <span>17:30</span>
+            </div>
+            <p class="text-gray-600 text-sm">
+                Hidup anak muda sering penuh tekanan, dari tugas sekolah, drama pertemanan, sampai ekspektasi masa depan. Biar mental tetap sehat, coba lakukan hal-hal kecil seperti olahraga ringan, tidur cukup, curhat ke orang yang dipercaya, atau meditasi singkat. Dengan kebiasaan sederhana ini, kewarasan bisa terjaga meski hidup lagi penuh drama.
+            </p>
+        </div>
+    </div>
+</article>
+
+                </div>
+
+                <!-- Tombol Muat Lebih Banyak -->
+                <div class="text-center mt-8">
+                    <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        Muat postingan lainnya
+                    </button>
+                </div>
+            </main>
+<!-- Sidebar Kanan -->
+<aside class="w-full md:w-1/4 relative sidebar-nofill-outline space-y-3">
+
+                <!-- Follow Us -->
+                <div class="bg-white rounded-lg shadow-sm p-4 relative sidebar-card-gradient-outline">
+                    <div class="px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md shadow-md mb-4">
+  <h3 class="font-bold text-lg text-center tracking-wide">FOLLOW US</h3>
+</div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/profile.php?id=100088730658692" class="flex items-center justify-between bg-[#3b5998] text-white px-4 py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                            <span>1.5k</span>
+                        </a>
+                        <!-- Twitter -->
+                        <a href="https://t.me/muhammadwildan09" class="flex items-center justify-between bg-[#1da1f2] text-white px-4 py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            <i class="fab fa-telegram text-xl"></i>
+                            <span>3.1k</span>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@MUHAMMADWILDANADIBPRAWIRA" class="flex items-center justify-between bg-[#ff0000] text-white px-4 py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            <i class="fab fa-youtube text-xl"></i>
+                            <span>2.7k</span>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/m_wldn_adb_p/" class="flex items-center justify-between bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-4 py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            <i class="fab fa-instagram text-xl"></i>
+                            <span>1.8k</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Total Tayangan -->
+                <div class="bg-white rounded-lg shadow-sm p-3 relative sidebar-card-gradient-outline">
+                   <div class="px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md shadow-md mb-4">
+  <h3 class="font-bold text-lg text-center tracking-wide">TOTAL TAYANGAN</h3>
+</div>
+
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">1.863.329</div>
+                        <div class="h-4 bg-gray-100 rounded flex items-center justify-center">
+                            <svg class="w-full h-8" viewBox="0 0 200 40">
+                                <polyline points="10,30 30,20 50,25 70,15 90,20 110,10 130,15 150,25 170,20 190,30" 
+                                         fill="none" stroke="#333" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Flag Counter Gradient Card -->
+<div class="relative sidebar-card-gradient-outline bg-white rounded-lg shadow-sm p-4 flex flex-col items-center">
+    <a href="https://info.flagcounter.com/abcd" target="_blank" style="text-decoration:none;">
+        <!-- Judul -->
+        <div class="px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md shadow-md mb-4">
+            <h3 class="font-bold text-lg text-center tracking-wide">DAFTAR PENGUNJUNG</h3>
+        </div>
+
+        <!-- Flag Counter -->
+        <div style="display:inline-block; padding:15px 10px 10px 10px; border-radius:20px; background: linear-gradient(135deg, #f0eef1, #cbd9f0); box-shadow: 0 8px 20px rgba(0,0,0,0.12); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <img src="https://s11.flagcounter.com/count2/abcd/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_8/viewers_0/labels_1/pageviews_1/flags_0/" alt="Flag Counter" border="0">
+        </div>
+    </a>
+</div>
+
+                <!-- Kategori -->
+                <div class="bg-white rounded-lg shadow-sm p-4 relative sidebar-card-gradient-outline">
+                  <div class="rounded-md bg-gradient-to-r from-purple-600 to-blue-500 mb-4 shadow-md">
+  <div class="flex">
+    <button id="kategori-btn" class="px-4 py-2 border-b-2 border-white text-white font-semibold">Kategori</button>
+    <button id="arsip-btn" class="px-4 py-2 text-white/80 hover:text-white">Arsip</button>
+    <button id="labels-btn" class="px-4 py-2 text-white/80 hover:text-white">Labels</button>
+  </div>
+</div>
+
+                    <div class="space-y-2 text-sm">
+                        <a href="#" class="block text-blue-600 hover:underline">Aplikasi</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Artikel</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Ekstrakurikuler</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Guru</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Musik</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Praktik</a>
+                        <a href="#" class="block text-blue-600 hover:underline">SPJAQ</a>
+                        <a href="#" class="block text-blue-600 hover:underline">STAI NU</a>
+                        <a href="#" class="block text-blue-600 hover:underline">TIK Kelas X</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Tutorial</a>
+                    </div>
+                </div>
+
+                <!-- Makalah -->
+                <div class="bg-white rounded-lg shadow-sm p-4 relative sidebar-card-gradient-outline">
+                    
+                   <div class="px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md shadow-md mb-4">
+  <h3 class="font-bold text-lg text-center tracking-wide">MAKALAH</h3>
+</div>
+
+                   
+                    
+                    <div class="space-y-2 text-sm">
+                        <a href="#" class="block text-blue-600 hover:underline">Agama Sebagai Institusi Dalam Dilema</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Hakekat Kurikulum</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Perencanaan Pendidikan dan Pelatihan</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Manajemen Mutu Sekolah/Madrasah</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Filsafat Islam dan Pendidikan</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Metodologi Penelitian Pendidikan</a>
+                        <a href="#" class="block text-blue-600 hover:underline">Psikologi Perkembangan Anak</a>
+                    </div>
+                </div>
+
+
+
+                <!-- SoundCloud Gradient Card -->
+    <div class="relative sidebar-card--outline bg-white rounded-lg shadow-sm p-0 flex flex-col items-center overflow-hidden">
+        <div class="bg-white rounded-lg shadow-sm p-4 relative sidebar-card-gradient-outline">
+            <div class="px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md shadow-md mb-4">
+                <h3 class="font-bold text-lg text-center tracking-wide">MUSIK</h3>
+            </div>
+            <div style="background: #fff; border-radius:20px; overflow:hidden; width:100%; padding: 10px 0;">
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2081053329&color=%23bbbbaa&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+                </iframe>
+                <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100; text-align:center; padding: 6px 0;">
+                    <a href="https://soundcloud.com/andi-forisma" title="Andi Forisma" target="_blank" style="color: #cccccc; text-decoration: none;">Andi Forisma</a> · 
+                    <a href="https://soundcloud.com/andi-forisma/lesung-pipi-raim-laode" title="Lesung pipi - Raim Laode" target="_blank" style="color: #cccccc; text-decoration: none;">Lesung pipi - Raim Laode</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                <!-- Widget Tanggal Hijriah dengan outline gradasi -->
+                <div class="bg-white rounded-lg shadow-sm p-4 relative sidebar-card-gradient-outline mb-4">
+                  <div class="px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white flex items-center justify-between rounded-md">
+                    <h3 class="font-bold text-lg  tracking-wide text-center absolute left-1/2 transform -translate-x-1/2 ">TIME IS GOLD</h3>   
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-9-9 7 7 0 009 9z"/>
+                    </svg>
+                  </div>
+                  <div class="p-6 space-y-3">
+                    <!-- Hijri (Indonesia/Latin) -->
+                    <div class="text-gray-900">
+                      <div class="text-xs uppercase text-gray-500">Hijriah</div>
+                      <div id="hijri-id" class="text-lg font-semibold">—</div>
+                    </div>
+                    <!-- Hijri (Arabic) -->
+                    <div class="text-gray-900">
+                      <div class="text-xs uppercase text-gray-500">الهجري</div>
+                      <div id="hijri-ar" class="text-xl font-semibold leading-snug" dir="rtl">—</div>
+                    </div>
+                    <hr class="my-2">
+                    <!-- Gregorian sebagai referensi -->
+                    <div class="text-gray-900">
+                      <div class="text-xs uppercase text-gray-500">Masehi (WIB)</div>
+                      <div id="greg" class="text-sm font-medium">—</div>
+                    </div>
+                  </div>
+                  <div class="px-4 pb-2">
+                    <div id="time" class="text-xs text-gray-500">—:—:—</div>
+                  </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#181b22] text-white mt-12 relative pt-0">
+    <!-- Bagian Atas Footer (Header) -->
+    <div class="flex items-center gap-4 px-6 py-4 border-b border-[#23262e]">
+        <img src="filefoto/ChatGPT_Image_24_Agu_2025__08.01.00-removebg-preview.png" alt="Logo Sekolah" class="w-14 h-14 rounded-full bg-white object-cover border-4 border-[#23262e]">
+        <div class="flex-1 text-center">
+            <span class="text-white text-sm md:text-base font-medium">
+               Platform Kami, solusi promosi yang pasti menguntungkan &amp; “Satu platform, sejuta peluang.”
+            </span>
+        </div>
+    </div>
+    <!-- Bagian Tengah Footer (Info Personal & Motto) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 py-8 bg-[#1e212a]">
+        <!-- Mengenai Saya -->
+        <div>
+            <div class="inline-block bg-[#23262e] px-4 py-1 rounded-t-md mb-2">
+                <span class="text-white text-xs font-bold tracking-wide">MENGENAI SAYA</span>
+            </div>
+            <div class="flex items-center gap-4 bg-[#23262e] rounded-md p-4">
+                <img src="filefoto/FB_IMG_16377639107705790.jpg" alt="Profil" class="w-16 h-16 object-cover rounded-md border-2 border-[#23262e] bg-red-600">
+                <div>
+                    <div class="font-bold text-white text-lg">wildandev</div>
+                    <a href="myPortfolio/index.html" class="text-blue-400 hover:underline text-sm font-medium">Lihat profil lengkapku</a>
+                </div>
+            </div>
+        </div>
+        <!-- Motto -->
+        <div>
+            <div class="inline-block bg-[#23262e] px-4 py-1 rounded-t-md mb-2">
+                <span class="text-white text-xs font-bold tracking-wide">MOTTO</span>
+            </div>
+            <div class="bg-[#23262e] rounded-md p-4">
+                <span class="text-white text-sm font-light leading-relaxed">
+                  🔱"Urip kuwi ojo digawe ruwet. Sing penting awake dhewe iso nrimo, iso syukur, lan iso nggoleki seneng ing saben dina. Aja kakehan mbandingke urip karo wong liya, saben wong duwe dalane dhewe-dhewe. Lek ono masalah, diadepi tenang, ojo grusa-grusu. Urip bakal luwih entheng nek ati tansah legawa lan ora gampang nesu."🔱
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- Bagian Bawah Footer (Credit & Navigasi) -->
+    <div class="bg-[#14161c] py-4 px-6 flex flex-col md:flex-row items-center justify-between border-t border-[#23262e] relative">
+        <div class="w-full text-center md:text-left text-gray-400 text-sm mb-2 md:mb-0">
+            Design by 
+            <a href="#" class="text-blue-400 hover:underline font-medium">Wildan Designer</a> | 
+            Edited by 
+            <a href="#" class="text-blue-400 hover:underline font-medium">HambaAllah86</a>
+        </div>
+        <div class="flex gap-6 text-white text-sm font-medium">
+            <a href="#" class="hover:underline">Home</a>
+            <a href="WEBALL/webportofoliomodern.html" class="hover:underline">About</a>
+            <a href="https://wa.me/6282142319435" target="_blank" class="hover:underline">Whatsapp</a>
+        </div>
+        <!-- Tombol Scroll Up -->
+        <button id="scrollUpBtn" class="fixed bottom-6 right-6 w-10 h-10 bg-blue-600 rounded shadow-lg flex items-center justify-center z-50 hover:bg-blue-700 transition-all">
+            <i class="fas fa-arrow-up text-white text-lg"></i>
+        </button>
+        <!-- Tambahkan tombol Scroll Down -->
+<button id="scrollDownBtn" class="fixed bottom-6 right-20 w-10 h-10 bg-blue-600 rounded shadow-lg flex items-center justify-center z-50 hover:bg-blue-700 transition-all">
+    <i class="fas fa-arrow-down text-white text-lg"></i>
+</button>
+    </div>
+</footer>
+<script>
+  // Formatter Gregorian (Indonesia)
+  const gregFmt = new Intl.DateTimeFormat('id-ID', {
+    weekday: 'long', day: '2-digit', month: 'long', year: 'numeric'
+  });
+
+  // Daftar locale untuk Hijriah
+  const hijriLocales = [
+    'id-ID-u-ca-islamic-umalqura',
+    'id-ID-u-ca-islamic',
+    'en-GB-u-ca-islamic-umalqura',
+    'en-GB-u-ca-islamic'
+  ];
+
+  const hijriArLocales = [
+    'ar-SA-u-ca-islamic-umalqura',
+    'ar-SA-u-ca-islamic',
+    'ar-u-ca-islamic-umalqura',
+    'ar-u-ca-islamic'
+  ];
+
+  function makeFormatter(locales, opts) {
+    for (const loc of locales) {
+      try {
+        return new Intl.DateTimeFormat(loc, opts);
+      } catch (e) {}
+    }
+    return null;
+  }
+
+  const hijriIdFmt = makeFormatter(hijriLocales, {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+
+  const hijriArFmt = makeFormatter(hijriArLocales, {
+    weekday: 'long', day: 'numeric',
+    numberingSystem: 'arab'
+  });
+
+  // Offset manual Hijriah (0 = default, +1 / -1 sesuai kebutuhan)
+  const HIJRI_OFFSET = 0;
+
+  // Ambil waktu lokal dari browser
+  function getLocalTime() {
+    return new Date();
+  }
+
+  function renderDates() {
+    const now = getLocalTime();
+
+    // Hijriah dengan offset
+    const hijriDate = new Date(now);
+    hijriDate.setDate(hijriDate.getDate() + HIJRI_OFFSET);
+
+    const hijriId = hijriIdFmt ? hijriIdFmt.format(hijriDate) + ' H' : 'Hijri tidak didukung';
+    const hijriAr = hijriArFmt ? hijriArFmt.format(hijriDate) + ' هـ' : '—';
+    const greg = gregFmt.format(now);
+
+    // Tampilkan ke halaman
+    document.getElementById('hijri-id').textContent = hijriId;
+    document.getElementById('hijri-ar').textContent = hijriAr;
+    document.getElementById('greg').textContent = greg;
+    document.getElementById('time').textContent = now.toLocaleTimeString('id-ID', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+  }
+
+  renderDates();
+  setInterval(renderDates, 1000);
+</script>
+<script>
+  // Ambil semua tombol
+  const buttons = document.querySelectorAll('.bg-gradient-to-r .flex button');
+
+  // Tambahkan event listener ke setiap tombol
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Hapus kelas aktif dari semua tombol
+      buttons.forEach(btn => {
+        btn.classList.remove('border-b-2', 'border-white', 'text-white', 'font-semibold');
+        btn.classList.add('text-white/80');
+      });
+
+      // Tambahkan kelas aktif ke tombol yang diklik
+      button.classList.add('border-b-2', 'border-white', 'text-white', 'font-semibold');
+      button.classList.remove('text-white/80');
+    });
+  });
+</script>
+<script>
+const scrollToTopButton = document.getElementById('scrollUpBtn');
+
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+</script>
+<script>
+const scrollToBottomButton = document.getElementById('scrollDownBtn');
+
+scrollToBottomButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+});
+</script>
+<script>
+// Ambil elemen tombol pencarian dan input pencarian
+const searchButton = document.querySelector('.fa-search');
+const searchInput = document.getElementById('searchInput');
+
+// Tampilkan atau sembunyikan input pencarian saat tombol diklik
+searchButton.addEventListener('click', () => {
+    if (searchInput.classList.contains('hidden')) {
+        searchInput.classList.remove('hidden');
+        searchInput.focus();
+    } else {
+        searchInput.classList.add('hidden');
+    }
+});
+
+// Tangani pencarian saat pengguna menekan Enter
+searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        const query = searchInput.value.trim().toLowerCase();
+        if (query) {
+            alert(`Hasil pencarian untuk: ${query}`);
+            // Tambahkan logika pencarian di sini, misalnya filter artikel
+        }
+    }
+});
+</script>
+<script>
+const articles = document.querySelectorAll('article');
+
+articles.forEach(article => {
+    const title = article.querySelector('h2').textContent.toLowerCase();
+    const content = article.querySelector('p').textContent.toLowerCase();
+
+    if (title.includes(query) || content.includes(query)) {
+        article.style.display = 'block';
+    } else {
+        article.style.display = 'none';
+    }
+});
+</script>
+<script>
+const burgerMenu = document.querySelector('.burger-menu');
+const navMenu = document.querySelector('nav');
+
+burgerMenu.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+</script>
+<style>
+body {
+    overflow-x: hidden;
+}
+.burger-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100; /* Pastikan burger menu berada di atas elemen lain */
+}
+
+/* Animasi gradasi */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Terapkan animasi pada garis gradasi */
+.navbar-gradient {
+    display: block; /* Garis terlihat di bawah navbar untuk semua perangkat */
+    height: 5px;
+    background: linear-gradient(90deg, #facc15, #44efca, #f91414, #fbf817, #18fb86);
+    background-size: 200% 200%;
+    animation: gradientAnimation 3s ease infinite;
+}
+
+/* Khusus untuk HP: Pindahkan garis di bawah foto */
+@media (max-width: 768px) {
+    .navbar-gradient {
+        margin-top: 16px; /* Tambahkan jarak jika diperlukan */
+    }
+}
+
+/* Khusus untuk layar lebih besar dari 768px: Hilangkan garis di bawah foto */
+@media (min-width: 769px) {
+    header + .navbar-gradient {
+        display: none; /* Sembunyikan garis di bawah foto */
+    }
+}
+
+/* Khusus untuk HP: Navbar dengan transparansi */
+@media (max-width: 768px) {
+    nav {
+        background: rgba(29, 78, 216, 0.8); /* Biru dengan transparansi 80% */
+        backdrop-filter: blur(10px); /* Efek blur untuk transparansi */
+    }nav.active {
+    background: linear-gradient(
+        90deg, 
+        rgba(7, 183, 252, 0.8), /* Warna biru dengan transparansi 80% */
+        rgba(29, 78, 216, 0.8) /* Warna biru tua dengan transparansi 80% */
+    ) !important;
+    backdrop-filter: blur(5px); /* Efek blur untuk transparansi */
+}
+</style>
+</body>
+</html>

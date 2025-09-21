@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA Nusantara - Sekolah Unggulan Berkarakter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .stats-counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #667eea;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #667eea;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .stats-counter {
+                font-size: 1.8rem;
+            }
+            
+            .hero-gradient {
+                padding: 3rem 0;
+            }
+            
+            .card-hover:hover {
+                transform: none;
+            }
+            
+            /* Touch-friendly buttons */
+            button, .btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Better spacing on mobile */
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Mobile typography */
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+            
+            h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Mobile grid adjustments */
+            .mobile-grid-1 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .mobile-stack {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            
+            /* Modal responsive */
+            .modal-content {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+            }
+        }
+        
+        /* Tablet Responsive Styles */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .stats-counter {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+        
+        /* Large Desktop Styles */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1280px;
+            }
+            
+            .stats-counter {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Landscape mobile orientation */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero-gradient {
+                padding: 2rem 0;
+            }
+            
+            .mobile-landscape-adjust {
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+              <!-- Logo -->
+<div class="flex items-center space-x-3">
+    <!-- Kotak dengan gambar -->
+    <div class="w-12 h-12 bg-gradient-to-r from-white-500 to-white-600 rounded-lg flex items-center justify-center">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAnFBMVEVHcEyqzOv///+Gu+Rbpt1Kn9uGu+WDuOPU6vf9//9oreFyruB2p815t+YAkNX///8Ak9sBjNIDg8YJfbsPcKW5trXGw8LRz9ARebImk9bn4+ATaJaanKKaqLfd2NO+vb4QXYny8O46m9mtqadsd4FmiadFg7AXjtEdWHqtsLQ+aopymLktaJGElaXAvZ/82ADKtQAdTGqLiYPMxYwkISQfAAAADnRSTlMAUxC83vh6kjQcwLjcqvJlvhYAAAGrSURBVCiRdZLXcttADEUlhaRke4LF9sIqNvVi+///LVhGGslxjAcOdg9xCV5gNnuOxcvsh1hkifdJ9j/+8ualkEJw/7r6ly29VO+5226bd7X5/VUxEdsm54ILlCpXKn3SXqSONwLxuDNbRFCqaR/SqXMSYehDYLYfeKxu77UJdzmCGKpgQzClBHRKprdecCsFALhgjbWVQgBscniLbOWBkyhwbo2pTSXpPRA5hznBjANOF7hjdc0Mxtwh8F9RlQPfTzcH1mlWxhSP4g7xNCIKJUfW92wQin7KnXCCGRfVUZ0q04muKzrZ6VCoPEhYEpwTZBRV4eqPTz2WJp4IZrHbDfZ6zZiuG3u92n2pGVvrHnnsdtaCswR3zJ4v10/LIqxG8IsIX4HrECE7Xy5nxmqCRkAyOTTneNQTZEVBj474Hnl28x2wpy5qvbYkSoXmA6G9GT/nIEpdHpqmKPJmoJQsWN5HlnCy9lCvmdmtWSg9mZQ+9scDjEGXhTZkQ1UgbOaPVSDzhwO5JmiWfCzEQ3SaaQpP0X5h0ahl0vrNxrfJ8ttq/v32avXjyn+LP8HpK9PcPSV6AAAAAElFTkSuQmCC" alt="Logo Sekolah" class="w-12 h-12 object-contain">
+    </div>
+
+    <!-- Teks -->
+    <div>
+        <h1 class="text-xl font-bold text-gray-800">SDN GONDANG WETAN 1</h1>
+        <p class="text-sm text-gray-600">Sekolah Unggulan Berkarakter</p>
+    </div>
+</div>
+
+<!-- Desktop Navigation -->
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600">Beranda</a>
+                    <div class="relative group">
+                        <a href="#profil" class="nav-link text-gray-700 hover:text-blue-600 flex items-center">
+                            Profil <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="#sejarah" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Sejarah</a>
+                            <a href="#visi-misi" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Visi & Misi</a>
+                            <a href="#struktur" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600">Struktur Organisasi</a>
+                        </div>
+                    </div>
+                    <a href="#akademik" class="nav-link text-gray-700 hover:text-blue-600">Akademik</a>
+                    <a href="#guru" class="nav-link text-gray-700 hover:text-blue-600">Guru & Staf</a>
+                    <a href="#berita" class="nav-link text-gray-700 hover:text-blue-600">Berita</a>
+                    <a href="#galeri" class="nav-link text-gray-700 hover:text-blue-600">Galeri</a>
+                    <a href="#kontak" class="nav-link text-gray-700 hover:text-blue-600">Kontak</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <button onclick="openPPDBModal()" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-300">
+                        <i class="fas fa-user-plus mr-2"></i>PPDB 2024
+                    </button>
+                    <button onclick="openLoginModal()" class="text-blue-600 border border-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition-all duration-300">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-full h-full bg-white z-50 lg:hidden">
+            <div class="p-4">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white"></i>
+                        </div>
+                        <span class="text-lg font-bold">SDN GONDANG WETAN 1</span>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <nav class="space-y-4">
+                    <a href="#home" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Beranda</a>
+                    <a href="#profil" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Profil</a>
+                    <a href="#akademik" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Akademik</a>
+                    <a href="#guru" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Guru & Staf</a>
+                    <a href="#berita" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Berita</a>
+                    <a href="#galeri" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Galeri</a>
+                    <a href="#kontak" class="block py-2 text-gray-700 border-b border-gray-200" onclick="toggleMobileMenu()">Kontak</a>
+                    <div class="pt-4 space-y-2">
+                        <button onclick="openPPDBModal(); toggleMobileMenu();" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg">
+                            <i class="fas fa-user-plus mr-2"></i>PPDB 2024
+                        </button>
+                        <button onclick="openLoginModal(); toggleMobileMenu();" class="w-full border border-blue-600 text-blue-600 py-3 rounded-lg">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Login
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+                        Membangun Generasi 
+                        <span class="text-yellow-300">Unggul</span> & 
+                        <span class="text-yellow-300">Berkarakter</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl mb-6 sm:mb-8 text-blue-100 leading-relaxed">
+                        SDN GONDANG WETAN 1 menghadirkan pendidikan berkualitas dengan fasilitas modern dan tenaga pengajar profesional untuk masa depan yang gemilang.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <button onclick="openPPDBModal()" class="bg-yellow-400 text-blue-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-all duration-300 flex items-center justify-center text-sm sm:text-base">
+                            <i class="fas fa-user-plus mr-2"></i>Daftar Sekarang
+                        </button>
+                        <button onclick="scrollToSection('profil')" class="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300 flex items-center justify-center text-sm sm:text-base">
+                            <i class="fas fa-play mr-2"></i>Pelajari Lebih Lanjut
+                        </button>
+                    </div>
+                </div>
+                <div class="relative mt-8 lg:mt-0">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8">
+                        <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                            <div class="text-center">
+                                <div class="stats-counter text-yellow-300 text-xl sm:text-2xl lg:text-4xl">1,200+</div>
+                                <p class="text-blue-100 text-xs sm:text-sm lg:text-base">Siswa Aktif</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-counter text-yellow-300 text-xl sm:text-2xl lg:text-4xl">85+</div>
+                                <p class="text-blue-100 text-xs sm:text-sm lg:text-base">Guru & Staf</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-counter text-yellow-300 text-xl sm:text-2xl lg:text-4xl">95%</div>
+                                <p class="text-blue-100 text-xs sm:text-sm lg:text-base">Siswa beraklakulkarimah</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stats-counter text-yellow-300 text-xl sm:text-2xl lg:text-4xl">A</div>
+                                <p class="text-blue-100 text-xs sm:text-sm lg:text-base">Akreditasi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Info -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                <div class="text-center card-hover bg-blue-50 p-4 sm:p-6 lg:p-8 rounded-xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-eye text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 lg:mb-4 text-gray-800">Visi Kami</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Menjadi sekolah unggulan yang menghasilkan lulusan berkarakter, berprestasi, dan siap menghadapi tantangan global.</p>
+                </div>
+                <div class="text-center card-hover bg-purple-50 p-4 sm:p-6 lg:p-8 rounded-xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-bullseye text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 lg:mb-4 text-gray-800">Misi Kami</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Menyelenggarakan pendidikan berkualitas dengan pendekatan holistik yang mengembangkan potensi akademik dan non-akademik.</p>
+                </div>
+                <div class="text-center card-hover bg-green-50 p-4 sm:p-6 lg:p-8 rounded-xl sm:col-span-2 lg:col-span-1">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-certificate text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 lg:mb-4 text-gray-800">Akreditasi A</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Terakreditasi A dari Badan Akreditasi Nasional Sekolah/Madrasah dengan standar pendidikan terbaik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Berita & Pengumuman -->
+    <section id="berita" class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Berita & Pengumuman</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Ikuti perkembangan terbaru dan informasi penting dari SMA Nusantara</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Berita Utama -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                        <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-trophy text-white text-4xl sm:text-5xl lg:text-6xl"></i>
+                        </div>
+                        <div class="p-4 sm:p-5 lg:p-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center mb-3 gap-2 sm:gap-0">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs sm:text-sm font-medium w-fit">Prestasi</span>
+                                <span class="text-gray-500 text-xs sm:text-sm sm:ml-3">15 Desember 2023</span>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-800 leading-tight">Siswa SMA Nusantara Raih Juara 1 Olimpiade Matematika Nasional</h3>
+                            <p class="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed">Tim olimpiade matematika SMA Nusantara berhasil meraih juara 1 dalam kompetisi tingkat nasional yang diselenggarakan di Jakarta...</p>
+                            <button class="text-blue-600 font-semibold hover:text-blue-800 transition-colors text-sm sm:text-base">
+                                Baca Selengkapnya <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Berita -->
+                <div class="space-y-4 sm:space-y-6">
+                    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-5 lg:p-6">
+                        <h4 class="font-bold text-gray-800 mb-3 sm:mb-4 flex items-center text-sm sm:text-base">
+                            <i class="fas fa-bullhorn text-red-500 mr-2"></i>
+                            Pengumuman Terbaru
+                        </h4>
+                        <div class="space-y-3 sm:space-y-4">
+                            <div class="border-l-4 border-red-500 pl-3 sm:pl-4">
+                                <p class="font-semibold text-xs sm:text-sm text-gray-800">Libur Semester Ganjil</p>
+                                <p class="text-xs text-gray-600">20 Des 2023 - 8 Jan 2024</p>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-3 sm:pl-4">
+                                <p class="font-semibold text-xs sm:text-sm text-gray-800">Pendaftaran PPDB 2024</p>
+                                <p class="text-xs text-gray-600">Mulai 1 Januari 2024</p>
+                            </div>
+                            <div class="border-l-4 border-green-500 pl-3 sm:pl-4">
+                                <p class="font-semibold text-xs sm:text-sm text-gray-800">Ujian Tengah Semester</p>
+                                <p class="text-xs text-gray-600">15-22 Februari 2024</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-5 lg:p-6">
+                        <h4 class="font-bold text-gray-800 mb-3 sm:mb-4 flex items-center text-sm sm:text-base">
+                            <i class="fas fa-calendar text-blue-500 mr-2"></i>
+                            Agenda Mendatang
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-blue-600 font-bold text-xs sm:text-sm">22</span>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-xs sm:text-sm text-gray-800">Rapat Orang Tua</p>
+                                    <p class="text-xs text-gray-600">Desember 2023</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-green-600 font-bold text-xs sm:text-sm">05</span>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-xs sm:text-sm text-gray-800">Pameran Karya Siswa</p>
+                                    <p class="text-xs text-gray-600">Januari 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Fasilitas Unggulan</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Fasilitas modern dan lengkap untuk mendukung proses pembelajaran yang optimal</p>
+            </div>
+            
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                <div class="text-center card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-4 sm:p-5 lg:p-6 rounded-xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-flask text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2 text-sm sm:text-base lg:text-lg">Laboratorium</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm">Lab Fisika, Kimia, Biologi, dan Komputer dengan peralatan modern</p>
+                </div>
+                
+                <div class="text-center card-hover bg-gradient-to-br from-green-50 to-green-100 p-4 sm:p-5 lg:p-6 rounded-xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-book text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2 text-sm sm:text-base lg:text-lg">Perpustakaan</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm">Koleksi buku lengkap dengan sistem digital dan ruang baca nyaman</p>
+                </div>
+                
+                <div class="text-center card-hover bg-gradient-to-br from-purple-50 to-purple-100 p-4 sm:p-5 lg:p-6 rounded-xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-running text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2 text-sm sm:text-base lg:text-lg">Olahraga</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm">Lapangan basket, voli, futsal, dan aula serbaguna</p>
+                </div>
+                
+                <div class="text-center card-hover bg-gradient-to-br from-orange-50 to-orange-100 p-4 sm:p-5 lg:p-6 rounded-xl">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-wifi text-white text-lg sm:text-xl lg:text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2 text-sm sm:text-base lg:text-lg">WiFi Campus</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm">Internet berkecepatan tinggi di seluruh area sekolah</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guru & Staf -->
+    <section id="guru" class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Guru & Tenaga Pendidik</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Tim pengajar profesional dan berpengalaman yang siap membimbing siswa meraih prestasi terbaik</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-40 sm:h-44 lg:h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-white text-4xl sm:text-5xl lg:text-6xl"></i>
+                    </div>
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <h3 class="font-bold text-gray-800 mb-1 text-sm sm:text-base">Dr. Ahmad Wijaya, M.Pd</h3>
+                        <p class="text-blue-600 text-xs sm:text-sm mb-2 sm:mb-3">Kepala Sekolah</p>
+                        <p class="text-gray-600 text-xs sm:text-sm">Pengalaman 20+ tahun dalam bidang pendidikan dan manajemen sekolah</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-40 sm:h-44 lg:h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                        <i class="fas fa-female text-white text-4xl sm:text-5xl lg:text-6xl"></i>
+                    </div>
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <h3 class="font-bold text-gray-800 mb-1 text-sm sm:text-base">Siti Nurhaliza, S.Pd</h3>
+                        <p class="text-green-600 text-xs sm:text-sm mb-2 sm:mb-3">Guru Matematika</p>
+                        <p class="text-gray-600 text-xs sm:text-sm">Spesialis olimpiade matematika dengan berbagai prestasi nasional</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-40 sm:h-44 lg:h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-male text-white text-4xl sm:text-5xl lg:text-6xl"></i>
+                    </div>
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <h3 class="font-bold text-gray-800 mb-1 text-sm sm:text-base">Budi Santoso, S.Si</h3>
+                        <p class="text-purple-600 text-xs sm:text-sm mb-2 sm:mb-3">Guru Fisika</p>
+                        <p class="text-gray-600 text-xs sm:text-sm">Lulusan ITB dengan pengalaman mengajar 15 tahun</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-40 sm:h-44 lg:h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                        <i class="fas fa-female text-white text-4xl sm:text-5xl lg:text-6xl"></i>
+                    </div>
+                    <div class="p-4 sm:p-5 lg:p-6">
+                        <h3 class="font-bold text-gray-800 mb-1 text-sm sm:text-base">Maya Sari, S.Pd</h3>
+                        <p class="text-red-600 text-xs sm:text-sm mb-2 sm:mb-3">Guru Bahasa Inggris</p>
+                        <p class="text-gray-600 text-xs sm:text-sm">Certified TOEFL instructor dengan skor 950</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-users mr-2"></i>Lihat Semua Guru
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri -->
+    <section id="galeri" class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Galeri Kegiatan</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Dokumentasi kegiatan dan prestasi siswa SMA Nusantara</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="relative group overflow-hidden rounded-xl card-hover cursor-pointer" onclick="openLightbox('gallery1')">
+                    <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-trophy text-white text-3xl sm:text-4xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-xl sm:text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
+                        <h3 class="text-white font-semibold text-sm sm:text-base">Penerimaan Penghargaan</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm">Olimpiade Matematika Nasional 2023</p>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl card-hover cursor-pointer" onclick="openLightbox('gallery2')">
+                    <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-green-400 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-microscope text-white text-3xl sm:text-4xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-xl sm:text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
+                        <h3 class="text-white font-semibold text-sm sm:text-base">Praktikum Laboratorium</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm">Kegiatan pembelajaran di lab sains</p>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl card-hover cursor-pointer" onclick="openLightbox('gallery3')">
+                    <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-purple-400 to-pink-600 flex items-center justify-center">
+                        <i class="fas fa-theater-masks text-white text-3xl sm:text-4xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-xl sm:text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
+                        <h3 class="text-white font-semibold text-sm sm:text-base">Pentas Seni</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm">Festival seni dan budaya sekolah</p>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl card-hover cursor-pointer" onclick="openLightbox('gallery4')">
+                    <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center">
+                        <i class="fas fa-running text-white text-3xl sm:text-4xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-xl sm:text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
+                        <h3 class="text-white font-semibold text-sm sm:text-base">Olahraga</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm">Kompetisi atletik antar sekolah</p>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl card-hover cursor-pointer" onclick="openLightbox('gallery5')">
+                    <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-teal-400 to-green-600 flex items-center justify-center">
+                        <i class="fas fa-seedling text-white text-3xl sm:text-4xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-xl sm:text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
+                        <h3 class="text-white font-semibold text-sm sm:text-base">Kegiatan Lingkungan</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm">Program peduli lingkungan sekolah</p>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-xl card-hover cursor-pointer" onclick="openLightbox('gallery6')">
+                    <div class="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-indigo-400 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-3xl sm:text-4xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-xl sm:text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
+                        <h3 class="text-white font-semibold text-sm sm:text-base">Wisuda</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm">Upacara kelulusan siswa 2023</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                    <i class="fas fa-images mr-2"></i>Lihat Semua Galeri
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak" class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami siap membantu Anda dengan informasi lebih lanjut tentang SMA Nusantara</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Form Kontak -->
+                <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6">Kirim Pesan</h3>
+                    <form id="contactForm" class="space-y-4 sm:space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nama Lengkap</label>
+                                <input type="text" class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan nama lengkap">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Email</label>
+                                <input type="email" class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan email">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nomor Telepon</label>
+                            <input type="tel" class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan nomor telepon">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Subjek</label>
+                            <select class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
+                                <option>Informasi PPDB</option>
+                                <option>Informasi Akademik</option>
+                                <option>Fasilitas Sekolah</option>
+                                <option>Lainnya</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Pesan</label>
+                            <textarea rows="4" class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Tulis pesan Anda..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 text-sm sm:text-base">
+                            <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Info Kontak -->
+                <div class="space-y-6 sm:space-y-8">
+                    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6">Informasi Kontak</h3>
+                        <div class="space-y-3 sm:space-y-4">
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-blue-600 text-sm sm:text-base"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Alamat</p>
+                                    <p class="text-gray-600 text-xs sm:text-sm">Jl. Pendidikan No. 123, Jakarta Selatan 12345</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-green-600 text-sm sm:text-base"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Telepon</p>
+                                    <p class="text-gray-600 text-xs sm:text-sm">(021) 1234-5678</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-purple-600 text-sm sm:text-base"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Email</p>
+                                    <p class="text-gray-600 text-xs sm:text-sm">info@smanusantara.sch.id</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-clock text-orange-600 text-sm sm:text-base"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-semibold text-gray-800 text-sm sm:text-base">Jam Operasional</p>
+                                    <p class="text-gray-600 text-xs sm:text-sm">Senin - Jumat: 07:00 - 16:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Peta -->
+                    <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6">Lokasi Sekolah</h3>
+                        <div class="h-48 sm:h-56 lg:h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+                            <div class="text-center px-4">
+                                <i class="fas fa-map text-gray-400 text-3xl sm:text-4xl mb-3 sm:mb-4"></i>
+                                <p class="text-gray-600 text-sm sm:text-base">Peta Lokasi SMA Nusantara</p>
+                                <p class="text-xs sm:text-sm text-gray-500 mt-2">Klik untuk membuka di Google Maps</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Logo & Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold">SMA Nusantara</h3>
+                            <p class="text-sm text-gray-400">Sekolah Unggulan Berkarakter</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Membangun generasi unggul dan berkarakter untuk masa depan Indonesia yang gemilang.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
+                            <i class="fab fa-youtube text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold mb-4">Menu Utama</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="#profil" class="text-gray-400 hover:text-white transition-colors">Profil Sekolah</a></li>
+                        <li><a href="#akademik" class="text-gray-400 hover:text-white transition-colors">Akademik</a></li>
+                        <li><a href="#guru" class="text-gray-400 hover:text-white transition-colors">Guru & Staf</a></li>
+                        <li><a href="#berita" class="text-gray-400 hover:text-white transition-colors">Berita</a></li>
+                        <li><a href="#galeri" class="text-gray-400 hover:text-white transition-colors">Galeri</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Layanan -->
+                <div>
+                    <h4 class="font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">PPDB Online</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">E-Learning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Sistem Informasi</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Download Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Ekstrakurikuler</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Prestasi</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Kontak -->
+                <div>
+                    <h4 class="font-bold mb-4">Kontak</h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt text-blue-400"></i>
+                            <span class="text-gray-400">Jl. Pendidikan No. 123, Jakarta Selatan</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone text-green-400"></i>
+                            <span class="text-gray-400">(021) 1234-5678</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-envelope text-purple-400"></i>
+                            <span class="text-gray-400">info@smanusantara.sch.id</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2023 SMA Nusantara. All rights reserved. | 
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a> | 
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PPDB Modal -->
+    <div id="ppdbModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+            <div class="p-4 sm:p-6 border-b border-gray-200">
+                <div class="flex justify-between items-start">
+                    <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 pr-4 leading-tight">Pendaftaran Peserta Didik Baru 2024</h2>
+                    <button onclick="closePPDBModal()" class="text-gray-500 hover:text-gray-700 flex-shrink-0">
+                        <i class="fas fa-times text-lg sm:text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4 sm:p-6">
+                <div class="mb-6">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <h3 class="font-bold text-blue-800 mb-2">Informasi PPDB 2024</h3>
+                        <ul class="text-blue-700 text-sm space-y-1">
+                            <li>• Pendaftaran: 1 Januari - 31 Maret 2024</li>
+                            <li>• Tes Seleksi: 5-7 April 2024</li>
+                            <li>• Pengumuman: 15 April 2024</li>
+                            <li>• Daftar Ulang: 20-25 April 2024</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <form id="ppdbForm" class="space-y-4 sm:space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nama Lengkap Siswa</label>
+                            <input type="text" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nama lengkap sesuai ijazah">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">NISN</label>
+                            <input type="text" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nomor Induk Siswa Nasional">
+                        </div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Tempat Lahir</label>
+                            <input type="text" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Tempat lahir">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Tanggal Lahir</label>
+                            <input type="date" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Asal Sekolah</label>
+                        <input type="text" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nama sekolah SMP/MTs asal">
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nama Orang Tua/Wali</label>
+                            <input type="text" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nama lengkap orang tua/wali">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Nomor Telepon</label>
+                            <input type="tel" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Nomor telepon yang bisa dihubungi">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Email</label>
+                        <input type="email" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Email aktif">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Alamat Lengkap</label>
+                        <textarea rows="3" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Alamat lengkap tempat tinggal"></textarea>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <h4 class="font-bold text-yellow-800 mb-2">Dokumen yang Diperlukan:</h4>
+                        <ul class="text-yellow-700 text-sm space-y-1">
+                            <li>• Fotocopy Ijazah SMP/MTs (dilegalisir)</li>
+                            <li>• Fotocopy SKHUN SMP/MTs (dilegalisir)</li>
+                            <li>• Fotocopy Akta Kelahiran</li>
+                            <li>• Fotocopy Kartu Keluarga</li>
+                            <li>• Pas foto 3x4 (3 lembar)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <input type="checkbox" id="agreement" required class="mr-2 sm:mr-3 mt-1">
+                        <label for="agreement" class="text-xs sm:text-sm text-gray-700">
+                            Saya menyetujui <a href="#" class="text-blue-600 hover:underline">syarat dan ketentuan</a> yang berlaku
+                        </label>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <button type="button" onclick="closePPDBModal()" class="flex-1 border border-gray-300 text-gray-700 py-2 sm:py-3 rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base">
+                            Batal
+                        </button>
+                        <button type="submit" class="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 sm:py-3 rounded-lg hover:shadow-lg transition-all duration-300 text-sm sm:text-base">
+                            <i class="fas fa-paper-plane mr-2"></i>Daftar Sekarang
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-white rounded-xl max-w-md w-full mx-2 sm:mx-0">
+            <div class="p-4 sm:p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">Login Sistem</h2>
+                    <button onclick="closeLoginModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-lg sm:text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4 sm:p-6">
+                <form id="loginForm" class="space-y-4 sm:space-y-6">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Username/Email</label>
+                        <input type="text" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan username atau email">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2 text-sm sm:text-base">Password</label>
+                        <input type="password" required class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base" placeholder="Masukkan password">
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="remember" class="mr-2">
+                            <label for="remember" class="text-xs sm:text-sm text-gray-700">Ingat saya</label>
+                        </div>
+                        <a href="#" class="text-xs sm:text-sm text-blue-600 hover:underline">Lupa password?</a>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 sm:py-3 rounded-lg hover:shadow-lg transition-all duration-300 text-sm sm:text-base">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </button>
+                </form>
+                
+                <div class="mt-4 sm:mt-6 text-center">
+                    <p class="text-gray-600 text-xs sm:text-sm">Belum punya akun? <a href="#" class="text-blue-600 hover:underline">Daftar di sini</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 z-10">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="lightboxContent" class="bg-white rounded-lg overflow-hidden">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Smooth Scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // PPDB Modal
+        function openPPDBModal() {
+            document.getElementById('ppdbModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePPDBModal() {
+            document.getElementById('ppdbModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Login Modal
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Lightbox
+        function openLightbox(galleryId) {
+            const modal = document.getElementById('lightboxModal');
+            const content = document.getElementById('lightboxContent');
+            
+            // Sample content based on gallery ID
+            const galleryContent = {
+                gallery1: {
+                    title: 'Penerimaan Penghargaan',
+                    description: 'Siswa SMA Nusantara meraih juara 1 Olimpiade Matematika Nasional 2023',
+                    icon: 'fas fa-trophy',
+                    gradient: 'from-blue-400 to-purple-600'
+                },
+                gallery2: {
+                    title: 'Praktikum Laboratorium',
+                    description: 'Kegiatan pembelajaran praktik di laboratorium sains modern',
+                    icon: 'fas fa-microscope',
+                    gradient: 'from-green-400 to-blue-600'
+                },
+                gallery3: {
+                    title: 'Pentas Seni',
+                    description: 'Festival seni dan budaya sekolah yang menampilkan kreativitas siswa',
+                    icon: 'fas fa-theater-masks',
+                    gradient: 'from-purple-400 to-pink-600'
+                },
+                gallery4: {
+                    title: 'Kompetisi Olahraga',
+                    description: 'Kegiatan atletik dan kompetisi olahraga antar sekolah',
+                    icon: 'fas fa-running',
+                    gradient: 'from-orange-400 to-red-600'
+                },
+                gallery5: {
+                    title: 'Program Lingkungan',
+                    description: 'Kegiatan peduli lingkungan dan program go green sekolah',
+                    icon: 'fas fa-seedling',
+                    gradient: 'from-teal-400 to-green-600'
+                },
+                gallery6: {
+                    title: 'Upacara Wisuda',
+                    description: 'Upacara kelulusan siswa SMA Nusantara tahun 2023',
+                    icon: 'fas fa-graduation-cap',
+                    gradient: 'from-indigo-400 to-purple-600'
+                }
+            };
+            
+            const item = galleryContent[galleryId];
+            if (item) {
+                content.innerHTML = `
+                    <div class="h-96 bg-gradient-to-br ${item.gradient} flex items-center justify-center">
+                        <i class="${item.icon} text-white text-8xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">${item.title}</h3>
+                        <p class="text-gray-600">${item.description}</p>
+                        <div class="mt-4 flex space-x-2">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                <i class="fas fa-download mr-2"></i>Download
+                            </button>
+                            <button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-share mr-2"></i>Share
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Form Submissions
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+            this.reset();
+        });
+
+        document.getElementById('ppdbForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Pendaftaran berhasil! Kami akan mengirimkan konfirmasi ke email Anda dalam 1x24 jam.');
+            closePPDBModal();
+            this.reset();
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login berhasil! Anda akan diarahkan ke dashboard.');
+            closeLoginModal();
+            this.reset();
+        });
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'ppdbModal') {
+                closePPDBModal();
+            }
+            if (e.target.id === 'loginModal') {
+                closeLoginModal();
+            }
+            if (e.target.id === 'lightboxModal') {
+                closeLightbox();
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('shadow-xl');
+            } else {
+                header.classList.remove('shadow-xl');
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.card-hover, section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97f86cd8c48d603b',t:'MTc1Nzk0MjQ2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
