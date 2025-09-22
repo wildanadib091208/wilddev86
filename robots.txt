@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wildanadib091208.github.io/wilddev86/sitemap.xml
+Sitemap: https://wildanadib091208.github.io/wilddev86/mysite/sitemap.xml
