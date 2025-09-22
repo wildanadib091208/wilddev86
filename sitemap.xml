@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Halaman Utama -->
+  <url>
+    <loc>https://wildanadib091208.github.io/wilddev86/mysite/index.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Halaman Konten -->
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/mbak.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/mbk.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/p.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/undangan%20ultah.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/web%20undangan%20pernikahan.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/webberita.artikel.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/webportofoliomodern.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/websekolah.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/websenimanbesi.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/wildshope.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/galeri.html</loc><priority>0.8</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/hotnews.html</loc><priority>0.8</priority></url>
+
+  <!-- Halaman Pendukung -->
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/headernavabar.html</loc><priority>0.5</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/login.html</loc><priority>0.5</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/logohome.html</loc><priority>0.5</priority></url>
+  <url><loc>https://wildanadib091208.github.io/wilddev86/mysite/nyb.html</loc><priority>0.5</priority></url>
+
+</urlset>
